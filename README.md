@@ -1,4 +1,4 @@
-# Paper 04: Separation Laws for Flip Bifurcations and Endogenous Switching Boundaries in Gradient Maps
+# Separation Laws for Flip Bifurcations and Endogenous Switching Boundaries in Gradient Maps
 
 This repository contains the LaTeX source code for the paper
 
