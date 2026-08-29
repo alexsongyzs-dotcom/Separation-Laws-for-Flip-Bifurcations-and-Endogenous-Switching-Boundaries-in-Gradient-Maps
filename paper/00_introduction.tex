@@ -1,0 +1,532 @@
+% =========================================================
+\section{Introduction}
+\label{sec:introduction}
+% =========================================================
+
+Gradient descent with a finite step size is naturally a discrete
+dynamical system,
+\begin{equation}
+x_{n+1}
+=
+x_n-\eta\nabla V(x_n),
+\label{eq:intro-GD}
+\end{equation}
+and its behavior near the boundary of linear stability can differ
+substantially from that suggested by the continuous gradient-flow
+approximation; see, for example,
+\cite{RobbinsMonro1951,Polyak1987,Nesterov2018,BottouCurtisNocedal2018}
+for the classical optimization background.  In particular, when a nondegenerate local minimum
+$x_*$ has maximal Hessian eigenvalue
+\[
+\lambda_*=
+\lambda_{\max}(D^2V(x_*)),
+\]
+the classical local stability threshold is
+\begin{equation}
+\eta_f
+=
+\frac{2}{\lambda_*}.
+\label{eq:intro-flip-threshold}
+\end{equation}
+At this value, the multiplier corresponding to the sharpest
+eigendirection reaches $-1$, and, under the usual nondegeneracy
+conditions, a flip bifurcation may occur.
+This is the classical simple flip-bifurcation mechanism for smooth
+maps; see, for example,
+\cite{Kuznetsov2004,GuckenheimerHolmes1983,HaleKocak1991}.
+The dynamics of gradient descent near this threshold have recently
+received considerable attention, partly motivated by the
+edge-of-stability phenomenon observed in large-step
+neural-network optimization
+\cite{CohenEtAl2021}.  Beyond
+linear stability, higher-order derivatives of the objective determine
+whether the loss of stability gives rise to stable or unstable
+oscillations.  In the multivariate setting, the nonlinear coefficient
+governing the local period-two branch depends not only on derivatives
+along the maximal-curvature eigendirection, but also on its coupling to
+the remaining Hessian eigendirections; see
+\cite{MulayoffStich2026,Gan2026,Litman2026}.
+These developments provide a
+precise smooth bifurcation description of oscillatory gradient-descent
+dynamics near a minimum.
+
+Gradient clipping is a standard mechanism for controlling large
+updates in optimization and has been studied from the viewpoints of
+training stability, adaptivity, and convergence
+\cite{PascanuMikolovBengio2013,ZhangEtAl2020,KoloskovaHendrikxStich2023,Goodfellow2016}.
+The situation changes qualitatively when the gradient is clipped.
+We consider the radial clipped gradient map
+\begin{equation}
+F_{\eta,c}(x)
+=
+x-\eta\mathcal C_c^\diamond(\nabla V(x)),
+\label{eq:intro-clipped-map}
+\end{equation}
+where
+\begin{equation}
+\mathcal C_c^\diamond(g)
+=
+\min
+\left\{
+1,\frac{c}{\|g\|_\diamond}
+\right\}g,
+\qquad
+c>0.
+\label{eq:intro-clipping}
+\end{equation}
+Here $\|\cdot\|_\diamond$ is a smooth norm away from the origin.
+The standard Euclidean clipping rule is recovered by taking
+$\|\cdot\|_\diamond=\|\cdot\|_2$.
+
+The clipping rule introduces the state-dependent switching
+hypersurface
+\begin{equation}
+\Sigma_c
+=
+\left\{
+x:
+\|\nabla V(x)\|_\diamond=c
+\right\}.
+\label{eq:intro-switching-surface}
+\end{equation}
+Inside
+\[
+\Omega_c^-
+=
+\{x:\|\nabla V(x)\|_\diamond<c\},
+\]
+the map \eqref{eq:intro-clipped-map} coincides exactly with ordinary
+gradient descent, whereas in
+\[
+\Omega_c^+
+=
+\{x:\|\nabla V(x)\|_\diamond>c\}
+\]
+the step magnitude is saturated.  Thus clipping converts a smooth
+gradient map into a continuous piecewise-smooth dynamical system whose
+switching boundary is not imposed externally: it is generated
+endogenously by the same potential $V$ that generates the smooth
+dynamics.  Piecewise-smooth maps and their border-collision
+bifurcations have been studied extensively; see
+\cite{Filippov1988,NusseYorke1992,diBernardo2008,diBernardoEtAl2008,
+diBernardoHogan2010,Simpson2010,Simpson2016,LeineNijmeijer2004}.
+
+This observation leads to a basic separation of mechanisms.  Since
+\[
+\nabla V(x_*)=0,
+\]
+for every fixed $c>0$ there exists a neighborhood of $x_*$ entirely
+contained in $\Omega_c^-$.  Consequently, clipping cannot change the
+local germ of the map at the minimum.  In particular, the fixed point,
+its linearization, its first loss-of-stability threshold, the
+center-manifold reduction, and the smooth flip coefficient are all
+identical to those of ordinary gradient descent.  The first genuinely
+clipping-induced effect must therefore occur at finite amplitude,
+after the bifurcating orbit has grown far enough to reach
+$\Sigma_c$.
+
+The aim of this paper is to characterize this first
+smooth-to-switching transition.
+
+% ---------------------------------------------------------
+\subsection{Main question}
+\label{subsec:intro-main-question}
+% ---------------------------------------------------------
+
+Assume that $x_*$ is a nondegenerate strict local minimum,
+that the maximal Hessian eigenvalue $\lambda_*$ is simple, and that
+the ordinary gradient map undergoes a supercritical flip bifurcation
+at
+\[
+\eta_f=\frac{2}{\lambda_*}.
+\]
+For
+\[
+\mu=\eta-\eta_f>0
+\]
+small, the smooth map possesses a stable period-two cycle
+\begin{equation}
+\mathcal O_2(\mu)
+=
+\{x_-(\mu),x_+(\mu)\}.
+\label{eq:intro-cycle}
+\end{equation}
+
+The central question is:
+
+\begin{quote}
+At what parameter value does the smooth period-two branch first reach
+the clipping boundary, and what dynamical structure is created when
+this contact occurs?
+\end{quote}
+
+For a generic flip bifurcation, the oscillation amplitude grows on the
+square-root scale
+\[
+\|x_\pm(\mu)-x_*\|
+\asymp
+\sqrt{\mu},
+\]
+whereas the local switching boundary generated by
+\[
+\|\nabla V(x)\|_\diamond=c
+\]
+lies at distance $O(c)$ from the critical point.  This suggests the
+matching law
+\[
+\mu_{\mathrm{sc}}
+\asymp
+c^2.
+\]
+However, the main issue is not merely the exponent.  General
+period-doubling--border-collision interactions are already known to
+produce tangencies between smooth bifurcation and switching loci.
+What is special here is the gradient-generated nature of both the
+smooth map and the switching surface.
+
+This additional structure allows us to derive the separation
+coefficient explicitly from the local derivatives of $V$, to prove
+that the two points of the period-two orbit reach the switching
+surface simultaneously, and to determine a universal spectral
+degeneracy in the fully clipped regime.
+
+% ---------------------------------------------------------
+\subsection{Main results}
+\label{subsec:intro-results}
+% ---------------------------------------------------------
+
+Let
+\[
+H_*
+=
+D^2V(x_*),
+\qquad
+T_*
+=
+D^3V(x_*),
+\qquad
+Q_*
+=
+D^4V(x_*),
+\]
+and let
+\[
+H_*v_*=\lambda_*v_*,
+\qquad
+\|v_*\|_2=1.
+\]
+Define
+\begin{equation}
+g_*
+=
+T_*[v_*,v_*,\cdot]^\sharp
+\label{eq:intro-g}
+\end{equation}
+and
+\begin{equation}
+\Gamma_*
+=
+3T_*[v_*,v_*,H_*^{-1}g_*]
+-
+Q_*[v_*,v_*,v_*,v_*].
+\label{eq:intro-Gamma}
+\end{equation}
+The condition
+\[
+\Gamma_*>0
+\]
+is the supercritical flip condition used throughout the paper.
+
+Our first result is a local identity principle.  For every fixed
+$c>0$, the clipped and unclipped maps coincide on a neighborhood of
+$x_*$.  Hence
+\begin{equation}
+DF_{\eta,c}(x_*)
+=
+I-\eta H_*,
+\label{eq:intro-local-linearization}
+\end{equation}
+and the first local stability threshold is exactly
+\begin{equation}
+\boxed{
+\eta_f
+=
+\frac{2}{\lambda_*},
+}
+\label{eq:intro-threshold-box}
+\end{equation}
+independently of $c$.  More strongly, the finite jets of the two maps
+at $x_*$ agree, so the local center dynamics and smooth flip
+coefficient are also clipping-independent.
+
+Second, we derive the leading amplitude of the smooth period-two
+branch.  For
+\[
+\mu=\eta-\eta_f\to0^+,
+\]
+one has
+\begin{equation}
+x_\pm(\mu)
+=
+x_*
+\pm
+A_*\sqrt{\mu}\,v_*
++
+O(\mu),
+\label{eq:intro-amplitude}
+\end{equation}
+where
+\begin{equation}
+\boxed{
+A_*^2
+=
+\frac{3\lambda_*^2}{\Gamma_*}.
+}
+\label{eq:intro-A}
+\end{equation}
+
+Third, the gradient structure gives an exact identity that is stronger
+than the local normal-form expansion.  For every genuine period-two
+cycle of ordinary gradient descent,
+\begin{equation}
+\boxed{
+\nabla V(x_+)
+=
+-\nabla V(x_-).
+}
+\label{eq:intro-gradient-balance}
+\end{equation}
+Thus the two points have exactly the same clipping exposure for every
+norm:
+\[
+\|\nabla V(x_+)\|_\diamond
+=
+\|\nabla V(x_-)\|_\diamond.
+\]
+Consequently, the first interaction with a radial clipping boundary is
+necessarily a simultaneous two-point contact.
+
+Along the bifurcating branch, the common exposure satisfies
+\begin{equation}
+\|\nabla V(x_\pm(\mu))\|_\diamond
+=
+B_*\sqrt{\mu}
++
+O(\mu^{3/2}),
+\label{eq:intro-exposure}
+\end{equation}
+where
+\begin{equation}
+B_*
+=
+\lambda_*A_*
+\|v_*\|_\diamond.
+\label{eq:intro-B}
+\end{equation}
+Inverting the contact equation
+\[
+\|\nabla V(x_\pm(\mu_{\mathrm{sc}}))\|_\diamond=c
+\]
+gives our principal separation theorem:
+\begin{equation}
+\boxed{
+\eta_{\mathrm{sc}}(c)-\eta_f
+=
+K_\diamond c^2
++
+O(c^4),
+\qquad
+c\to0^+,
+}
+\label{eq:intro-main-law}
+\end{equation}
+with the explicit coefficient
+\begin{equation}
+\boxed{
+K_\diamond
+=
+\frac{\Gamma_*}{
+3\lambda_*^4
+\|v_*\|_\diamond^2
+}.
+}
+\label{eq:intro-K}
+\end{equation}
+
+Equivalently, if
+\[
+\{v_i\}_{i=1}^d
+\]
+is an orthonormal Hessian eigenbasis with eigenvalues
+$\lambda_i$, then
+\begin{equation}
+K_\diamond
+=
+\frac{
+3\displaystyle\sum_{i=1}^d
+\frac{
+T_*[v_*,v_*,v_i]^2
+}{
+\lambda_i
+}
+-
+Q_*[v_*^4]
+}{
+3\lambda_*^4
+\|v_*\|_\diamond^2
+}.
+\label{eq:intro-K-eigen}
+\end{equation}
+
+Thus the same high-order local quantity that controls the birth and
+stability of the smooth oscillation also determines the leading
+distance in parameter space to the first clipping event.
+
+The radial structure imposes further restrictions after contact.
+A period-two orbit of the clipped map cannot have one point in
+$\Omega_c^-$ and the other in $\Omega_c^+$.  Hence a mixed
+smooth--clipped period-two itinerary is impossible.  If a period-two
+orbit persists beyond contact, both points must lie in the clipped
+region and satisfy the exact amplitude constraint
+\begin{equation}
+\boxed{
+\|y_+-y_-\|_\diamond
+=
+\eta c.
+}
+\label{eq:intro-clipped-amplitude}
+\end{equation}
+
+Finally, every fully clipped period-two orbit is necessarily
+nonhyperbolic.  If
+\[
+M_c
+=
+DF_{\eta,c}(y_-)
+DF_{\eta,c}(y_+)
+\]
+denotes its monodromy matrix, then
+\begin{equation}
+\boxed{
+1\in\sigma(M_c).
+}
+\label{eq:intro-unit-multiplier}
+\end{equation}
+This unit multiplier follows from the fact that radial clipping
+annihilates infinitesimal changes in gradient magnitude while
+retaining only tangent variations of the gradient direction.
+
+A completely solvable planar gradient model shows that this
+degeneracy can have a genuine nonlinear manifestation: after the
+simultaneous switching contact, the isolated attracting smooth
+period-two cycle is replaced locally by a one-parameter family of
+fully clipped period-two cycles, transversely attracting but neutral
+along the family.
+
+\subsection{Relation to existing bifurcation theory}
+
+The present analysis lies at the intersection of two established
+lines of work.
+
+The first is smooth local bifurcation theory for maps.
+Near a simple multiplier $-1$, center-manifold and normal-form
+reductions yield the classical flip bifurcation and the
+square-root scaling of the emerging period-two branch; see,
+for example,
+\cite{Kuznetsov2004,GuckenheimerHolmes1983,ChowHale1982,
+Wiggins2003,Arnold1983,Sotomayor1973,HaleKocak1991,PalisDeMelo1982}.
+
+More recently, nonlinear oscillatory dynamics of gradient descent
+near the edge of stability have been studied directly.
+Mulayoff and Stich \cite{MulayoffStich2026} derived a multivariate
+stability criterion for nonlinear gradient-descent oscillations
+near a minimum in terms of higher-order derivatives of the
+objective.
+Gan \cite{Gan2026} formulated edge-of-stability dynamics in a
+bifurcation-theoretic framework, in which the relevant normal
+dynamics undergo a flip bifurcation governed by the corresponding
+first Lyapunov coefficient.
+Relatedly, Litman \cite{Litman2026} characterized fixed points and
+period-two orbits of gradient descent through an exact two-step
+variational formulation and obtained a local reduction in terms
+of the half-amplitude of the oscillation.
+
+Some ingredients of the smooth analysis developed below therefore
+belong to standard flip-bifurcation theory or have close analogues
+in recent analyses of nonlinear gradient-descent dynamics.
+We nevertheless include self-contained derivations, both to fix
+notation and because the resulting coefficients enter explicitly
+into the subsequent switching analysis.
+
+The second relevant line of work is the theory of piecewise-smooth
+maps and border-collision bifurcations
+\cite{NusseYorke1995,BanerjeeGrebogi1999,Feigin1970,diBernardo2008,
+Simpson2010,Simpson2016}.
+In particular, Simpson and Meiss
+\cite{SimpsonMeiss2008,SimpsonMeiss2009,SimpsonMeiss2009Nonlinearity,
+SimpsonMeiss2010,SimpsonMeiss2012} studied the codimension-two
+interaction between period-doubling and border-collision
+bifurcations in general piecewise-smooth continuous maps. They
+showed that the border-collision locus of the period-doubled
+solution can be tangent to the period-doubling locus near the
+codimension-two point. Thus quadratic separation between smooth
+bifurcation and switching loci is already a feature of generic
+period-doubling--border-collision interactions.
+
+Our contribution is not the generic existence of such a tangency,
+nor the smooth flip mechanism itself. Rather, we exploit the
+additional variational structure of clipped gradient maps.
+The switching surface
+\[
+\Sigma_c=\{x:\|\nabla V(x)\|_\diamond=c\}
+\]
+is generated endogenously by the same potential that determines
+the smooth gradient dynamics. Moreover, the period-two equations
+impose exact gradient-balance identities.
+
+These additional constraints yield structural consequences that
+are absent from a generic externally switched map. In particular,
+we obtain:
+\begin{enumerate}
+    \item clipping-independent local flip dynamics;
+    \item an explicit tensor formula for the flip-to-switching
+    separation coefficient;
+    \item simultaneous switching contact of the two points of a
+    smooth period-two orbit;
+    \item nonexistence of mixed smooth--clipped period-two
+    itineraries;
+    \item an exact unit Floquet multiplier for every fully clipped
+    period-two orbit.
+\end{enumerate}
+
+It is these gradient-induced rigidity properties, rather than the
+standard smooth flip bifurcation or the generic tangency mechanism,
+that form the main focus of the present work.
+% ---------------------------------------------------------
+\subsection{Organization of the paper}
+\label{subsec:intro-organization}
+% ---------------------------------------------------------
+
+The paper is organized as follows.
+
+Section~\ref{sec:setting} introduces the clipped gradient map,
+the switching hypersurface, and the standing assumptions.
+
+Section~\ref{sec:local-structure} proves the local identity between
+clipped and ordinary gradient descent and establishes the
+clipping-independent stability threshold.
+
+Section~\ref{sec:flip-bifurcation} derives the supercritical
+period-two branch and its explicit leading amplitude.
+
+Section~\ref{sec:switching-geometry} develops the exact gradient
+balance and switching geometry along the period-two branch.
+
+Section~\ref{sec:separation-law} proves the quadratic
+flip-to-switching separation law and derives its explicit coefficient.
+
+Section~\ref{sec:post-contact} studies the fully clipped regime and
+proves the universal unit-multiplier theorem.
+
+Section~\ref{sec:planar-model} presents a completely solvable planar
+model that realizes the full transition analytically.

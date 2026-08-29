@@ -1,0 +1,25 @@
+# Lean build artifacts
+.lake/
+lean_extract/
+*.olean
+*.ilean
+*.c
+*.h
+*.trace
+*.hash
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.nav
+*.snm
+*.toc
+*.synctex.gz
+
+# OS
+Thumbs.db
+.DS_Store
+Desktop.ini

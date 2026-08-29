@@ -1,0 +1,622 @@
+
+% =========================================================
+\section{Local structure and clipping-independent stability}
+\label{sec:local-structure}
+% =========================================================
+
+We first establish a structural fact used throughout the paper: for
+every fixed $c>0$, clipping is completely inactive in a sufficiently
+small neighborhood of $x_*$, so the clipped and unclipped gradient
+maps have identical local germs at $x_*$.  Consequently, clipping
+cannot alter the linear stability threshold, the local invariant
+structures, or any smooth local normal-form coefficient at $x_*$;
+its influence can appear only when an orbit reaches a
+finite-amplitude region intersecting the switching hypersurface
+$\Sigma_c$.
+
+% ---------------------------------------------------------
+\subsection{Fixed points}
+\label{subsec:fixed-points}
+% ---------------------------------------------------------
+
+We begin with a global observation.
+
+\begin{proposition}[Fixed-point invariance]
+\label{prop:fixed-point-invariance}
+Let $\eta>0$ and $c>0$. Then
+\begin{equation}
+\operatorname{Fix}(F_{\eta,c})
+=
+\operatorname{Crit}(V)
+:=
+\left\{
+x\in\mathcal U:
+\nabla V(x)=0
+\right\}.
+\label{eq:fixed-critical-equivalence}
+\end{equation}
+In particular, the set of fixed points is independent of both
+$\eta$ and $c$.
+\end{proposition}
+
+\begin{proof}
+If $\nabla V(x)=0$, then
+\[
+\mathcal C_c^\diamond(\nabla V(x))=0,
+\]
+and hence
+\[
+F_{\eta,c}(x)
+=
+x-\eta\mathcal C_c^\diamond(\nabla V(x))
+=
+x.
+\]
+Thus every critical point of $V$ is a fixed point of $F_{\eta,c}$.
+
+Conversely, suppose that
+\[
+F_{\eta,c}(x)=x.
+\]
+Since $\eta>0$, we obtain
+\[
+\mathcal C_c^\diamond(\nabla V(x))=0.
+\]
+By the definition of the radial clipping operator
+\eqref{eq:clipping-operator},
+\[
+\mathcal C_c^\diamond(g)=0
+\quad\Longleftrightarrow\quad
+g=0.
+\]
+Therefore
+\[
+\nabla V(x)=0.
+\]
+This proves \eqref{eq:fixed-critical-equivalence}.
+\end{proof}
+
+\begin{remark}
+\label{rem:no-spurious-fixed-points}
+Proposition~\ref{prop:fixed-point-invariance} shows that norm clipping
+does not create spurious equilibria.  All dynamical effects of
+clipping therefore arise from the behavior of nonstationary
+trajectories rather than from a modification of the critical-point
+set of the potential.
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{Quantitative inactivity of clipping}
+\label{subsec:local-inactivity}
+% ---------------------------------------------------------
+
+The next lemma gives a quantitative local estimate.
+
+For a linear map $A:\mathbb R^d\to\mathbb R^d$, define the mixed
+operator norm
+\begin{equation}
+\|A\|_{2\to\diamond}
+:=
+\sup_{\|z\|_2=1}
+\|Az\|_\diamond.
+\label{eq:mixed-operator-norm}
+\end{equation}
+
+\begin{lemma}[Local gradient estimate]
+\label{lem:local-gradient-estimate}
+Under \textbf{(H1)--(H2)}, there exist $r_0>0$ and $L_*>0$ such that
+\[
+\overline{B_{r_0}(x_*)}
+\subset\mathcal U
+\]
+and
+\begin{equation}
+\|\nabla V(x)\|_\diamond
+\leq
+L_*\|x-x_*\|_2
+\qquad
+\text{for all }
+x\in B_{r_0}(x_*).
+\label{eq:local-gradient-bound}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Since $\mathcal U$ is open and $x_*\in\mathcal U$, choose
+$r_0>0$ sufficiently small so that
+\[
+\overline{B_{r_0}(x_*)}
+\subset\mathcal U.
+\]
+By \textbf{(H1)}, the Hessian $D^2V$ is continuous. Hence
+\begin{equation}
+L_*
+:=
+\sup_{y\in\overline{B_{r_0}(x_*)}}
+\|D^2V(y)\|_{2\to\diamond}
+<\infty.
+\label{eq:L-star-definition}
+\end{equation}
+
+For $x\in B_{r_0}(x_*)$, the line segment joining $x_*$ to $x$
+lies in $B_{r_0}(x_*)$. Since $\nabla V(x_*)=0$, the fundamental
+theorem of calculus gives
+\begin{align}
+\nabla V(x)
+&=
+\nabla V(x)-\nabla V(x_*)
+\nonumber\\
+&=
+\int_0^1
+D^2V\bigl(x_*+t(x-x_*)\bigr)(x-x_*)\,dt.
+\label{eq:gradient-integral}
+\end{align}
+Therefore
+\begin{align}
+\|\nabla V(x)\|_\diamond
+&\leq
+\int_0^1
+\left\|
+D^2V\bigl(x_*+t(x-x_*)\bigr)
+\right\|_{2\to\diamond}
+\|x-x_*\|_2\,dt
+\nonumber\\
+&\leq
+L_*\|x-x_*\|_2.
+\end{align}
+This proves \eqref{eq:local-gradient-bound}.
+\end{proof}
+
+For every fixed $c>0$, define
+\begin{equation}
+r_c
+:=
+\min
+\left\{
+r_0,
+\frac{c}{2L_*}
+\right\}.
+\label{eq:rc-definition}
+\end{equation}
+
+\begin{corollary}[Clipping inactivity]
+\label{cor:clipping-inactivity}
+For every $c>0$,
+\begin{equation}
+B_{r_c}(x_*)
+\subset\Omega_c^-.
+\label{eq:ball-inside-smooth-region}
+\end{equation}
+Equivalently,
+\begin{equation}
+B_{r_c}(x_*)\cap\Sigma_c
+=
+\varnothing.
+\label{eq:no-switching-near-critical}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+If $x\in B_{r_c}(x_*)$, then by
+Lemma~\ref{lem:local-gradient-estimate},
+\[
+\|\nabla V(x)\|_\diamond
+\leq
+L_*\|x-x_*\|_2
+<
+L_*r_c
+\leq
+\frac{c}{2}
+<
+c.
+\]
+Hence $x\in\Omega_c^-$.
+\end{proof}
+
+\begin{remark}[Dependence on the clipping threshold]
+\label{rem:shrinking-neighborhood}
+The neighborhood in Corollary~\ref{cor:clipping-inactivity} is not
+uniform as $c\to0^+$.  The explicit choice
+\eqref{eq:rc-definition} has
+\[
+r_c=O(c).
+\]
+This shrinking local scale is essential for the later
+smooth-to-switching analysis: although clipping is invisible in a
+neighborhood of $x_*$ for every fixed $c>0$, the boundary of that
+neighborhood approaches the critical point as $c\to0^+$.
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{Local identity of the clipped and smooth maps}
+\label{subsec:local-identity}
+% ---------------------------------------------------------
+
+We can now state the basic structural theorem.
+
+\begin{theorem}[Local identity theorem]
+\label{thm:local-identity}
+Assume \textbf{(H1)--(H2)}. For every fixed $c>0$, there exists
+$r_c>0$ such that, for every $\eta>0$,
+\begin{equation}
+F_{\eta,c}(x)
+=
+G_\eta(x)
+=
+x-\eta\nabla V(x)
+\qquad
+\text{for all }
+x\in B_{r_c}(x_*).
+\label{eq:local-map-identity}
+\end{equation}
+The radius $r_c$ may be chosen independently of $\eta$.
+\end{theorem}
+
+\begin{proof}
+By Corollary~\ref{cor:clipping-inactivity},
+\[
+B_{r_c}(x_*)
+\subset\Omega_c^-.
+\]
+Hence, for every $x\in B_{r_c}(x_*)$,
+\[
+\|\nabla V(x)\|_\diamond<c.
+\]
+By definition of the clipping operator,
+\[
+\mathcal C_c^\diamond(\nabla V(x))
+=
+\nabla V(x).
+\]
+Substitution into \eqref{eq:clipped-gradient-map} yields
+\[
+F_{\eta,c}(x)
+=
+x-\eta\nabla V(x)
+=
+G_\eta(x).
+\]
+The construction of $r_c$ in \eqref{eq:rc-definition} does not
+involve $\eta$, so the same neighborhood works for every $\eta>0$.
+\end{proof}
+
+Theorem~\ref{thm:local-identity} is stronger than equality of the
+linearizations: the two maps agree as functions on an open
+neighborhood of $x_*$.
+
+% ---------------------------------------------------------
+\subsection{Jet invariance and local normal forms}
+\label{subsec:jet-invariance}
+% ---------------------------------------------------------
+
+The local identity immediately implies equality of all derivatives
+allowed by the regularity of $V$.
+
+\begin{corollary}[Local jet and normal-form invariance]
+\label{cor:jet-invariance}
+\label{cor:flip-coefficient-independence}
+Under \textbf{(H1)--(H4)}, for every fixed $c>0$ and $\eta>0$:
+\begin{enumerate}[label=\textnormal{(\roman*)}]
+\item
+every local Taylor coefficient of $F_{\eta,c}$ and $G_\eta$ at
+$x_*$ that is defined under the assumed regularity is identical;
+in particular,
+\begin{equation}
+DF_{\eta,c}(x_*)
+=
+I-\eta H_*;
+\label{eq:clipped-linearization}
+\end{equation}
+\item
+the local center-manifold equations and all smooth flip
+normal-form coefficients of $F_{\eta,c}$ at $x_*$ are identical to
+those of $G_\eta$; in particular, the coefficient $\ell_*$
+defined in \eqref{eq:ell-star} is independent of the clipping
+threshold $c$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+The two maps coincide on a neighborhood of $x_*$ by
+Theorem~\ref{thm:local-identity}, so all derivatives at $x_*$ that
+are defined coincide.  Smooth normal-form coefficients depend only
+on a finite jet at the bifurcation point; hence the center-manifold
+invariance equations and reduced normal forms are identical.
+\end{proof}
+
+\begin{remark}
+\label{rem:local-versus-finite-amplitude}
+Corollary~\ref{cor:flip-coefficient-independence} is a central
+structural distinction in the present problem.  Clipping cannot
+modify the birth mechanism of a sufficiently small smooth
+period-two orbit.  It can affect that orbit only after its amplitude
+has grown sufficiently for one of its points to reach $\Sigma_c$.
+The latter is a finite-amplitude event and will be analyzed in
+Sections~\ref{sec:switching-geometry} and
+\ref{sec:separation-law}.
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{Exact local stability threshold}
+\label{subsec:local-stability-threshold}
+% ---------------------------------------------------------
+
+We next determine the stability of $x_*$.  The threshold
+$\eta_f=2/\lambda_*$ below is the classical maximal step size of
+(unclipped) gradient descent \cite{Polyak1987,Nesterov2018};
+Theorem~\ref{thm:local-stability-threshold} shows that it is
+preserved exactly by clipping.
+
+\begin{theorem}[Clipping-independent local stability threshold]
+\label{thm:local-stability-threshold}
+Assume \textbf{(H1)--(H3)} and let
+\[
+\eta_f=\frac{2}{\lambda_*}.
+\]
+Then, for every fixed $c>0$, the following statements hold.
+
+\begin{enumerate}[label=\textnormal{(\roman*)}]
+
+\item
+If
+\begin{equation}
+0<\eta<\eta_f,
+\label{eq:stable-eta-range}
+\end{equation}
+then $x_*$ is a locally asymptotically stable fixed point of
+$F_{\eta,c}$.
+
+\item
+If
+\begin{equation}
+\eta>\eta_f,
+\label{eq:unstable-eta-range}
+\end{equation}
+then $x_*$ is unstable for $F_{\eta,c}$.
+
+\item
+At
+\begin{equation}
+\eta=\eta_f,
+\end{equation}
+the fixed point is nonhyperbolic.  Its unique multiplier on the unit
+circle is the simple multiplier $-1$ associated with $v_*$.
+
+\end{enumerate}
+
+Consequently, the first local stability threshold is exactly
+\begin{equation}
+\boxed{
+\eta_f
+=
+\frac{2}{\lambda_{\max}(H_*)}
+}
+\label{eq:boxed-stability-threshold}
+\end{equation}
+and is independent of the clipping threshold $c$.
+\end{theorem}
+
+\begin{proof}
+By Corollary~\ref{cor:jet-invariance},
+\[
+DF_{\eta,c}(x_*)
+=
+I-\eta H_*.
+\]
+Since $H_*$ is symmetric positive definite, the multipliers are
+\[
+\rho_i(\eta)
+=
+1-\eta\lambda_i,
+\qquad
+i=1,\ldots,d.
+\]
+
+Suppose first that
+\[
+0<\eta<\frac{2}{\lambda_*}.
+\]
+Since $0<\lambda_i\leq\lambda_*$,
+\[
+0<\eta\lambda_i<2,
+\]
+and hence
+\[
+-1
+<
+1-\eta\lambda_i
+<
+1
+\qquad
+\text{for every }i.
+\]
+Thus
+\[
+\max_i|\rho_i(\eta)|<1.
+\]
+The fixed point is therefore locally asymptotically stable by the
+standard linearization theorem for discrete dynamical systems.
+
+Now suppose that
+\[
+\eta>\frac{2}{\lambda_*}.
+\]
+Then
+\[
+\rho_d(\eta)
+=
+1-\eta\lambda_*
+<
+-1,
+\]
+so
+\[
+|\rho_d(\eta)|>1.
+\]
+Hence $x_*$ is unstable.
+
+Finally, if
+\[
+\eta=\eta_f=\frac{2}{\lambda_*},
+\]
+then
+\[
+\rho_d(\eta_f)=-1.
+\]
+By \textbf{(H3)}, for every $i<d$,
+\[
+0<\lambda_i<\lambda_*,
+\]
+and therefore
+\[
+-1
+<
+1-\frac{2\lambda_i}{\lambda_*}
+<
+1.
+\]
+Thus $-1$ is the unique multiplier on the unit circle, and it is
+simple.
+\end{proof}
+
+\begin{remark}
+\label{rem:boundary-inconclusive-linearly}
+Theorem~\ref{thm:local-stability-threshold} deliberately makes no
+stability claim at $\eta=\eta_f$.  Linearization is inconclusive
+when the critical multiplier has modulus one.  The nonlinear
+behavior at this parameter is governed by the flip coefficient
+$\ell_*$ and will be analyzed in Section~\ref{sec:flip-bifurcation}.
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{Local invariant structures}
+\label{subsec:local-invariant-structures}
+% ---------------------------------------------------------
+
+The local identity also transfers invariant structures from the
+smooth gradient map to the clipped map.  For a map $T$ and a radius
+$r>0$, define the local stable set relative to $B_r(x_*)$ by
+\begin{equation}
+W^s_r(x_*;T)
+:=
+\left\{
+x\in B_r(x_*):
+T^n(x)\in B_r(x_*)\ \forall n\geq0,
+\quad
+T^n(x)\to x_*
+\right\}.
+\label{eq:relative-local-stable-set}
+\end{equation}
+
+\begin{proposition}[Equality of local stable dynamics]
+\label{prop:local-stable-dynamics}
+Let $c>0$, and choose $0<r\leq r_c$.
+Then, for every $\eta>0$,
+\begin{equation}
+W^s_r(x_*;F_{\eta,c})
+=
+W^s_r(x_*;G_\eta).
+\label{eq:stable-set-equality}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The two maps coincide on $B_r(x_*)$ by
+Theorem~\ref{thm:local-identity}, so the defining conditions in
+\eqref{eq:relative-local-stable-set} are equivalent for the two
+maps.
+\end{proof}
+
+When $x_*$ is hyperbolic, this equality gives equality of the
+corresponding stable-manifold germs.  If, in addition,
+\begin{equation}
+\det(I-\eta H_*)\neq0,
+\label{eq:local-diffeomorphism-condition}
+\end{equation}
+then both maps are local diffeomorphisms near $x_*$, and the same
+argument gives equality of their local unstable-manifold germs.
+
+At the critical parameter $\eta=\eta_f$, the fixed point is
+nonhyperbolic. Nevertheless, local identity still implies equality
+of the corresponding center dynamics.
+
+\begin{proposition}[Center-manifold invariance at the flip threshold]
+\label{prop:center-manifold-invariance}
+Assume \textbf{(H1)--(H3)} and set $\eta=\eta_f$.
+For every fixed $c>0$, a sufficiently small local center manifold of
+$G_{\eta_f}$ through $x_*$ is also a local center manifold of
+$F_{\eta_f,c}$.
+
+Moreover, the reduced maps on this common center manifold are
+identical.
+\end{proposition}
+
+\begin{proof}
+By Theorem~\ref{thm:local-identity}, the maps
+$F_{\eta_f,c}$ and $G_{\eta_f}$ coincide in a neighborhood of
+$x_*$. Choose a local center manifold of $G_{\eta_f}$ contained in
+that neighborhood. Its local invariance equation is therefore also
+satisfied by $F_{\eta_f,c}$. Since the restrictions of the two maps
+to the manifold coincide pointwise, the corresponding reduced
+one-dimensional dynamics are identical.
+\end{proof}
+
+\begin{remark}[Nonuniqueness of center manifolds]
+\label{rem:center-manifold-nonuniqueness}
+Center manifolds need not be unique as sets; the content of
+Proposition~\ref{prop:center-manifold-invariance} is only that the
+two maps admit one common choice with identical reduced dynamics.
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{Consequences for the smooth-to-switching mechanism}
+\label{subsec:local-structure-consequences}
+% ---------------------------------------------------------
+
+\begin{corollary}[Local bifurcation structure is clipping-independent]
+\label{cor:local-bifurcation-clipping-independent}
+Under \textbf{(H1)--(H4)}, for every fixed $c>0$:
+
+\begin{enumerate}[label=\textnormal{(\roman*)}]
+
+\item
+the fixed point $x_*$ is unchanged by clipping;
+
+\item
+its first local stability threshold is
+\[
+\eta_f=\frac{2}{\lambda_*};
+\]
+
+\item
+the critical eigendirection is $v_*$;
+
+\item
+the critical multiplier crosses $-1$ transversally at $\eta_f$;
+
+\item
+the local center-manifold reduction is identical to that of the
+unclipped gradient map;
+
+\item
+the supercritical flip coefficient $\ell_*$ is independent of $c$.
+
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Items (i)--(vi) follow respectively from
+Proposition~\ref{prop:fixed-point-invariance},
+Theorem~\ref{thm:local-stability-threshold},
+\eqref{eq:critical-eigenpair},
+\eqref{eq:transversal-crossing},
+Proposition~\ref{prop:center-manifold-invariance}, and
+Corollary~\ref{cor:flip-coefficient-independence}.
+\end{proof}
+
+The key implication is that $c$ does not enter the local birth
+mechanism of the period-doubled branch: its first dynamical effect
+must occur at a distinct finite-amplitude event, when the
+bifurcating orbit reaches the endogenous switching hypersurface
+$\Sigma_c$.
+

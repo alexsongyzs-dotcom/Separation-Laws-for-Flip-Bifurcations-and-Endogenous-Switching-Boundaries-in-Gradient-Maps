@@ -1,0 +1,1011 @@
+
+% =========================================================
+\section{Switching geometry along the period-two branch}
+\label{sec:switching-geometry}
+% =========================================================
+
+We now study how the smooth period-two branch constructed in
+Section~\ref{sec:flip-bifurcation} approaches the endogenous
+switching hypersurface
+\[
+\Sigma_c
+=
+\left\{
+x\in\mathcal U:
+\|\nabla V(x)\|_\diamond=c
+\right\}.
+\]
+
+A key structural feature of gradient maps appears at this point.
+For an arbitrary period-two cycle of gradient descent, the gradients
+at its two points are exactly opposite. Consequently, their gradient
+norms are identical for every norm $\|\cdot\|_\diamond$.
+
+This identity has two important consequences.
+
+First, the two points of the smooth period-two orbit necessarily
+reach the clipping boundary simultaneously. Thus, unlike a generic
+piecewise-smooth map, the present gradient-generated switching
+problem does not exhibit a splitting of the two first-contact
+parameters.
+
+Second, the common gradient magnitude along the bifurcating cycle
+has a particularly simple expansion in the square-root parameter
+$\varepsilon=\sqrt{\eta-\eta_f}$. This structure will yield the
+quadratic separation law in Section~\ref{sec:separation-law}.
+
+% ---------------------------------------------------------
+\subsection{Exact gradient balance on a period-two cycle}
+\label{subsec:exact-gradient-balance}
+% ---------------------------------------------------------
+
+We begin with an exact identity that does not rely on the local
+bifurcation expansion. An equivalent balance relation appears in
+the recent characterization of gradient-descent period-two orbits
+by Litman \cite{Litman2026}. Since this identity is the starting
+point of the switching analysis below, we include its elementary
+proof for completeness.
+
+\begin{proposition}[Exact gradient balance]
+\label{prop:exact-gradient-balance}
+Let $\eta>0$, and suppose that
+$\{x_-,x_+\}$ is a period-two cycle of the smooth gradient map
+\[
+G_\eta(x)
+=
+x-\eta\nabla V(x),
+\]
+that is,
+\begin{equation}
+G_\eta(x_+)=x_-,
+\qquad
+G_\eta(x_-)=x_+,
+\qquad
+x_+\neq x_-.
+\label{eq:two-cycle-relations}
+\end{equation}
+Then
+\begin{equation}
+\nabla V(x_+)
+=
+\frac{x_+-x_-}{\eta},
+\qquad
+\nabla V(x_-)
+=
+-\frac{x_+-x_-}{\eta}.
+\label{eq:exact-gradient-opposition}
+\end{equation}
+In particular,
+\begin{equation}
+\nabla V(x_+)
+=
+-\nabla V(x_-).
+\label{eq:opposite-gradients}
+\end{equation}
+Consequently, for every norm $\|\cdot\|_\diamond$,
+\begin{equation}
+\|\nabla V(x_+)\|_\diamond
+=
+\|\nabla V(x_-)\|_\diamond.
+\label{eq:equal-gradient-norms}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The first identity in \eqref{eq:two-cycle-relations} gives
+\[
+x_-
+=
+x_+
+-
+\eta\nabla V(x_+),
+\]
+and hence
+\[
+\nabla V(x_+)
+=
+\frac{x_+-x_-}{\eta}.
+\]
+Similarly,
+\[
+x_+
+=
+x_-
+-
+\eta\nabla V(x_-)
+\]
+implies
+\[
+\nabla V(x_-)
+=
+\frac{x_--x_+}{\eta}
+=
+-\frac{x_+-x_-}{\eta}.
+\]
+This proves \eqref{eq:exact-gradient-opposition} and
+\eqref{eq:opposite-gradients}.
+
+Since every norm is even,
+\[
+\|-g\|_\diamond=\|g\|_\diamond,
+\]
+and therefore
+\[
+\|\nabla V(x_-)\|_\diamond
+=
+\|-\nabla V(x_+)\|_\diamond
+=
+\|\nabla V(x_+)\|_\diamond.
+\]
+\end{proof}
+
+\begin{remark}[Gradient structure versus a generic switching map]
+\label{rem:gradient-special-structure}
+Equation \eqref{eq:equal-gradient-norms} is a special consequence of
+the gradient-descent structure.  In a generic piecewise-smooth map,
+the two points of a period-two orbit need not have equal switching
+functions and may therefore encounter a switching boundary at
+different parameter values.
+
+For radial gradient clipping, by contrast, the switching function
+depends only on
+\[
+\|\nabla V(x)\|_\diamond,
+\]
+and Proposition~\ref{prop:exact-gradient-balance} forces the two
+switching values to be identical along every smooth period-two
+cycle.
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{Midpoint and half-difference coordinates}
+\label{subsec:midpoint-difference}
+% ---------------------------------------------------------
+
+For the bifurcating period-two cycle
+\[
+\mathcal O_2(\mu)
+=
+\{x_-(\mu),x_+(\mu)\},
+\qquad
+\mu=\eta-\eta_f>0,
+\]
+define its midpoint and half-difference by
+\begin{align}
+m(\mu)
+&:=
+\frac{x_+(\mu)+x_-(\mu)}{2}-x_*,
+\label{eq:midpoint-definition}
+\\
+d(\mu)
+&:=
+\frac{x_+(\mu)-x_-(\mu)}{2}.
+\label{eq:half-difference-definition}
+\end{align}
+Thus
+\begin{equation}
+x_\pm(\mu)
+=
+x_*+m(\mu)\pm d(\mu).
+\label{eq:midpoint-difference-representation}
+\end{equation}
+
+Theorem~\ref{thm:period-two-branch} implies
+\begin{equation}
+m(\mu)=O(\mu),
+\qquad
+d(\mu)
+=
+A_*\sqrt{\mu}\,v_*
++
+O(\mu).
+\label{eq:rough-md-orders}
+\end{equation}
+
+The period-two equations yield considerably more structure.
+
+\begin{lemma}[Midpoint--difference equations]
+\label{lem:midpoint-difference-equations}
+For every smooth period-two cycle of $G_\eta$ written in the form
+\eqref{eq:midpoint-difference-representation},
+\begin{align}
+&
+\nabla V(x_*+m+d)
++
+\nabla V(x_*+m-d)
+=
+0,
+\label{eq:midpoint-equation}
+\\
+&
+\nabla V(x_*+m+d)
+-
+\nabla V(x_*+m-d)
+=
+\frac{4}{\eta}d.
+\label{eq:difference-equation}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+By Proposition~\ref{prop:exact-gradient-balance},
+\[
+\nabla V(x_*+m+d)
+=
+\frac{2}{\eta}d
+\]
+and
+\[
+\nabla V(x_*+m-d)
+=
+-\frac{2}{\eta}d.
+\]
+Adding and subtracting these identities gives
+\eqref{eq:midpoint-equation} and
+\eqref{eq:difference-equation}.
+\end{proof}
+
+% ---------------------------------------------------------
+\subsection{Square-root parametrization and parity}
+\label{subsec:square-root-parity}
+% ---------------------------------------------------------
+
+By the parameter-dependent flip theorem
+\cite{Kuznetsov2004,GuckenheimerHolmes1983} and \textbf{(H1)}, the
+local period-two branch admits a $C^4$ signed parametrization in the
+variable $\varepsilon$ introduced below; in particular the midpoint
+and half-difference functions are $C^4$, and the parity relations
+derived next are justified to the orders used in
+Proposition~\ref{prop:refined-cycle-expansion}.
+
+Introduce the signed square-root parameter
+\begin{equation}
+\varepsilon^2=\mu,
+\qquad
+\eta=\eta_f+\varepsilon^2.
+\label{eq:epsilon-definition}
+\end{equation}
+
+The two-cycle equations are invariant under the transformation
+\[
+(d,\varepsilon)
+\longmapsto
+(-d,-\varepsilon),
+\]
+which merely exchanges the two points of the cycle.
+
+The local uniqueness of the bifurcating period-two branch therefore
+allows the branch to be parametrized so that
+\begin{equation}
+m(-\varepsilon)=m(\varepsilon),
+\qquad
+d(-\varepsilon)=-d(\varepsilon).
+\label{eq:parity-md}
+\end{equation}
+
+Hence the midpoint is even and the half-difference is odd in
+$\varepsilon$.
+
+\begin{proposition}[Refined two-cycle expansion]
+\label{prop:refined-cycle-expansion}
+Assume \textbf{(H1)--(H4)}.
+The period-two branch can be parametrized by the signed variable
+$\varepsilon$, with $\mu=\varepsilon^2$, such that
+\begin{align}
+m(\varepsilon)
+&=
+\varepsilon^2m_2
++
+O(\varepsilon^4),
+\label{eq:m-expansion}
+\\
+d(\varepsilon)
+&=
+A_*\varepsilon v_*
++
+O(\varepsilon^3),
+\label{eq:d-expansion}
+\end{align}
+where
+\begin{equation}
+m_2
+=
+-\frac{A_*^2}{2}H_*^{-1}g_*
+=
+-\frac{A_*^2}{2}h_*.
+\label{eq:m2-formula}
+\end{equation}
+
+Consequently,
+\begin{equation}
+x_\pm(\mu)
+=
+x_*
+-
+\frac{A_*^2}{2}\mu h_*
+\pm
+A_*\sqrt{\mu}\,v_*
++
+O(\mu^{3/2}).
+\label{eq:refined-xpm-expansion}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The parity relations \eqref{eq:parity-md} imply that the local
+expansions have the form
+\[
+m(\varepsilon)
+=
+\varepsilon^2m_2+O(\varepsilon^4)
+\]
+and
+\[
+d(\varepsilon)
+=
+\varepsilon d_1+O(\varepsilon^3).
+\]
+By Theorem~\ref{thm:period-two-branch},
+\[
+d_1=A_*v_*.
+\]
+
+It remains to determine $m_2$.
+Taylor expansion of the gradient about $x_*$ gives
+\begin{equation}
+\nabla V(x_*+y)
+=
+H_*y
++
+\frac12
+T_*[y,y,\cdot]^\sharp
++
+O(\|y\|_2^3).
+\label{eq:gradient-second-order-Taylor}
+\end{equation}
+
+Apply \eqref{eq:gradient-second-order-Taylor} to
+$y=m+d$ and $y=m-d$ and add the resulting expressions.
+Using \eqref{eq:midpoint-equation}, we obtain
+\begin{equation}
+2H_*m
++
+T_*[d,d,\cdot]^\sharp
++
+O(\varepsilon^4)
+=
+0.
+\label{eq:midpoint-expanded}
+\end{equation}
+Here we used
+\[
+m=O(\varepsilon^2),
+\qquad
+d=O(\varepsilon),
+\]
+and the cancellation of all terms odd in $d$.
+
+Substituting
+\[
+m=\varepsilon^2m_2+O(\varepsilon^4)
+\]
+and
+\[
+d=A_*\varepsilon v_*+O(\varepsilon^3)
+\]
+into \eqref{eq:midpoint-expanded} gives
+\[
+2H_*m_2
++
+A_*^2
+T_*[v_*,v_*,\cdot]^\sharp
+=
+0.
+\]
+Since $H_*$ is invertible,
+\[
+m_2
+=
+-\frac{A_*^2}{2}
+H_*^{-1}
+T_*[v_*,v_*,\cdot]^\sharp
+=
+-\frac{A_*^2}{2}h_*.
+\]
+This proves \eqref{eq:m2-formula} and hence
+\eqref{eq:refined-xpm-expansion}.
+\end{proof}
+
+\begin{remark}[Nonlinear displacement of the cycle midpoint]
+\label{rem:midpoint-drift}
+Although the leading oscillation is aligned with the maximal
+Hessian eigendirection $v_*$, the midpoint of the bifurcating
+two-cycle generally does not remain at $x_*$. Instead,
+\[
+\frac{x_+(\mu)+x_-(\mu)}{2}
+=
+x_*
+-
+\frac{A_*^2}{2}\mu h_*
++
+O(\mu^2).
+\]
+Thus the third derivative of $V$ produces an $O(\mu)$ drift of the
+cycle center through the vector
+\[
+h_*
+=
+H_*^{-1}
+T_*[v_*,v_*,\cdot]^\sharp.
+\]
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{A consistency derivation of the flip amplitude}
+\label{subsec:amplitude-consistency}
+% ---------------------------------------------------------
+
+The midpoint--difference equations also provide a direct,
+coordinate-free derivation of the leading oscillation amplitude.
+
+\begin{proposition}[Amplitude identity]
+\label{prop:amplitude-identity}
+Under \textbf{(H1)--(H4)}, the leading amplitude satisfies
+\begin{equation}
+A_*^2\Gamma_*
+=
+3\lambda_*^2.
+\label{eq:amplitude-Gamma-identity}
+\end{equation}
+Equivalently,
+\begin{equation}
+A_*^2
+=
+\frac{3\lambda_*^2}{\Gamma_*},
+\label{eq:amplitude-coordinate-free}
+\end{equation}
+in agreement with
+\eqref{eq:A-star-Gamma}.
+\end{proposition}
+
+\begin{proof}
+Expand the difference equation
+\eqref{eq:difference-equation} to cubic order.
+
+Using
+\[
+m
+=
+\varepsilon^2m_2+O(\varepsilon^4),
+\qquad
+d
+=
+A_*\varepsilon v_*+O(\varepsilon^3),
+\]
+Taylor expansion gives
+\begin{align}
+&
+\nabla V(x_*+m+d)
+-
+\nabla V(x_*+m-d)
+\nonumber\\
+&\quad=
+2H_*d
++
+2T_*[m,d,\cdot]^\sharp
++
+\frac13Q_*[d,d,d,\cdot]^\sharp
++
+O(\varepsilon^4).
+\label{eq:difference-expanded}
+\end{align}
+
+On the other hand,
+\[
+\frac{4}{\eta}
+=
+\frac{4}{\eta_f+\varepsilon^2}
+=
+\frac{4}{\eta_f}
+-
+\frac{4}{\eta_f^2}\varepsilon^2
++
+O(\varepsilon^4).
+\label{eq:four-over-eta}
+\]
+
+Take the Euclidean inner product of
+\eqref{eq:difference-equation} with $v_*$ and compare the
+coefficients of $\varepsilon^3$.
+
+The unknown $O(\varepsilon^3)$ correction in $d$ cancels because
+\[
+\frac{4}{\eta_f}
+=
+2\lambda_*.
+\]
+Thus,
+\begin{equation}
+2A_*
+T_*[v_*,v_*,m_2]
++
+\frac{A_*^3}{3}
+Q_*[v_*,v_*,v_*,v_*]
+=
+-\frac{4A_*}{\eta_f^2}.
+\label{eq:amplitude-before-substitution}
+\end{equation}
+
+Since
+\[
+m_2
+=
+-\frac{A_*^2}{2}h_*
+\]
+and
+\[
+\eta_f=\frac{2}{\lambda_*},
+\]
+equation \eqref{eq:amplitude-before-substitution} becomes
+\[
+-A_*^3T_*[v_*,v_*,h_*]
++
+\frac{A_*^3}{3}Q_*[v_*^4]
+=
+-A_*\lambda_*^2.
+\]
+Dividing by $A_*>0$ and rearranging gives
+\[
+A_*^2
+\left(
+3T_*[v_*,v_*,h_*]
+-
+Q_*[v_*^4]
+\right)
+=
+3\lambda_*^2.
+\]
+By definition of $\Gamma_*$,
+\[
+A_*^2\Gamma_*
+=
+3\lambda_*^2.
+\]
+\end{proof}
+
+\begin{remark}
+\label{rem:coordinate-free-check}
+Proposition~\ref{prop:amplitude-identity} provides an independent
+check of the center-manifold normal-form calculation in
+Section~\ref{sec:flip-bifurcation}.  In particular, the same
+high-order quantity $\Gamma_*$ governs both the supercriticality
+criterion and the leading amplitude of the emerging period-two
+cycle.
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{Gradient exposure along the bifurcating cycle}
+\label{subsec:gradient-exposure}
+% ---------------------------------------------------------
+
+Define the common gradient exposure of the smooth period-two cycle
+by
+\begin{equation}
+\mathscr E(\mu)
+:=
+\|\nabla V(x_+(\mu))\|_\diamond
+=
+\|\nabla V(x_-(\mu))\|_\diamond.
+\label{eq:exposure-definition}
+\end{equation}
+The equality is exact by
+Proposition~\ref{prop:exact-gradient-balance}.
+
+Using the half-difference coordinate, one obtains the exact formula
+\begin{equation}
+\mathscr E(\mu)
+=
+\frac{2}{\eta_f+\mu}
+\|d(\mu)\|_\diamond.
+\label{eq:exact-exposure-d}
+\end{equation}
+
+This identity is considerably stronger than a direct Taylor
+expansion of $\nabla V$ at the two cycle points.
+
+\begin{theorem}[Asymptotic switching geometry of the two-cycle]
+\label{thm:exposure-expansion}
+Assume \textbf{(H1)--(H5)}.
+As $\mu\to0^+$,
+\begin{equation}
+\mathscr E(\mu)
+=
+B_*\mu^{1/2}
++
+O(\mu^{3/2}),
+\label{eq:exposure-expansion}
+\end{equation}
+where
+\begin{equation}
+B_*
+=
+\lambda_*A_*
+\|v_*\|_\diamond.
+\label{eq:B-star}
+\end{equation}
+
+Equivalently,
+\begin{equation}
+B_*^2
+=
+\frac{
+3\lambda_*^4
+\|v_*\|_\diamond^2
+}{
+\Gamma_*
+}.
+\label{eq:B-star-Gamma}
+\end{equation}
+
+In particular, there is no term of order $\mu$ in
+\eqref{eq:exposure-expansion}.
+\end{theorem}
+
+\begin{proof}
+Set
+\[
+\varepsilon=\sqrt{\mu}.
+\]
+By Proposition~\ref{prop:refined-cycle-expansion},
+\[
+d(\varepsilon)
+=
+A_*\varepsilon v_*
++
+O(\varepsilon^3).
+\]
+Using positive homogeneity of the norm,
+\begin{align}
+\|d(\varepsilon)\|_\diamond
+&=
+\varepsilon
+\left\|
+A_*v_*
++
+O(\varepsilon^2)
+\right\|_\diamond
+\nonumber\\
+&=
+A_*
+\|v_*\|_\diamond
+\varepsilon
++
+O(\varepsilon^3).
+\label{eq:d-norm-expansion}
+\end{align}
+Furthermore,
+\begin{equation}
+\frac{2}{\eta_f+\varepsilon^2}
+=
+\frac{2}{\eta_f}
++
+O(\varepsilon^2)
+=
+\lambda_*
++
+O(\varepsilon^2).
+\label{eq:two-over-eta-expansion}
+\end{equation}
+Substituting
+\eqref{eq:d-norm-expansion} and
+\eqref{eq:two-over-eta-expansion} into
+\eqref{eq:exact-exposure-d} yields
+\[
+\mathscr E(\mu)
+=
+\lambda_*A_*
+\|v_*\|_\diamond
+\varepsilon
++
+O(\varepsilon^3).
+\]
+Since $\varepsilon=\sqrt{\mu}$,
+\[
+\mathscr E(\mu)
+=
+B_*\mu^{1/2}
++
+O(\mu^{3/2}),
+\]
+where
+\[
+B_*
+=
+\lambda_*A_*
+\|v_*\|_\diamond.
+\]
+
+Finally, using
+\[
+A_*^2
+=
+\frac{3\lambda_*^2}{\Gamma_*}
+\]
+gives
+\[
+B_*^2
+=
+\lambda_*^2
+A_*^2
+\|v_*\|_\diamond^2
+=
+\frac{
+3\lambda_*^4
+\|v_*\|_\diamond^2
+}{
+\Gamma_*
+}.
+\]
+\end{proof}
+
+\begin{remark}[Absence of a quadratic term in the exposure]
+\label{rem:no-mu-term}
+A naive substitution of
+\[
+x_\pm(\mu)
+=
+x_*
+\pm
+A_*\sqrt{\mu}\,v_*
++
+O(\mu)
+\]
+into the gradient norm might suggest an expansion of the form
+\[
+B_1\sqrt{\mu}+B_2\mu+\cdots.
+\]
+The exact two-cycle identity
+\eqref{eq:exact-exposure-d} shows that this is not the case.
+
+The half-difference $d$ is odd in the signed square-root parameter
+$\varepsilon$, while $\eta=\eta_f+\varepsilon^2$ is even.
+Consequently, the common exposure is an odd function of
+$\varepsilon$ to leading orders:
+\[
+\mathscr E(\varepsilon^2)
+=
+B_*\varepsilon
++
+O(\varepsilon^3).
+\]
+This structural cancellation will improve the remainder in the
+switching-contact separation law from the naively expected
+$O(c^3)$ to $O(c^4)$.
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{Simultaneous first contact}
+\label{subsec:simultaneous-contact}
+% ---------------------------------------------------------
+
+We now record the most important geometric consequence of the exact
+gradient balance.
+
+\begin{theorem}[Simultaneous switching contact]
+\label{thm:simultaneous-contact}
+Let $\mathcal O_2(\mu)=\{x_-(\mu),x_+(\mu)\}$ be the smooth
+period-two branch from
+Theorem~\ref{thm:period-two-branch}.
+For every sufficiently small $\mu>0$,
+\begin{equation}
+x_+(\mu)\in\Sigma_c
+\quad\Longleftrightarrow\quad
+x_-(\mu)\in\Sigma_c.
+\label{eq:simultaneous-contact-equivalence}
+\end{equation}
+
+Likewise,
+\begin{align}
+x_+(\mu)\in\Omega_c^-
+&\quad\Longleftrightarrow\quad
+x_-(\mu)\in\Omega_c^-,
+\label{eq:simultaneous-smooth}
+\\
+x_+(\mu)\in\Omega_c^+
+&\quad\Longleftrightarrow\quad
+x_-(\mu)\in\Omega_c^+.
+\label{eq:simultaneous-clipped}
+\end{align}
+
+Hence the two points of a smooth gradient-descent period-two cycle
+cannot cross a radial clipping boundary sequentially.
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:exact-gradient-balance},
+\[
+\|\nabla V(x_+(\mu))\|_\diamond
+=
+\|\nabla V(x_-(\mu))\|_\diamond.
+\]
+Each of the three statements follows immediately by comparing this
+common value with the clipping threshold $c$.
+\end{proof}
+
+\begin{corollary}[No pre-contact splitting of the two-cycle]
+\label{cor:no-contact-splitting}
+There do not exist two distinct first-contact parameters
+\[
+\eta_{\mathrm{sc}}^+(c)
+\neq
+\eta_{\mathrm{sc}}^-(c)
+\]
+for the two points of the smooth period-two branch.
+Whenever the first switching contact exists, it is a simultaneous
+two-point contact.
+\end{corollary}
+
+\begin{proof}
+If one point lies on $\Sigma_c$, then the other lies on $\Sigma_c$
+by Theorem~\ref{thm:simultaneous-contact}.
+\end{proof}
+
+% ---------------------------------------------------------
+\subsection{Impossibility of a mixed smooth--clipped two-cycle}
+\label{subsec:no-mixed-two-cycle}
+% ---------------------------------------------------------
+
+The simultaneous-contact structure is not restricted to the smooth
+branch before contact.  Radial clipping itself rules out a genuine
+period-two cycle having one point in the smooth region and the other
+in the clipped region.
+
+\begin{proposition}[No mixed-itinerary period-two cycle]
+\label{prop:no-mixed-period-two}
+Let
+\[
+\{y_-,y_+\}
+\]
+be a period-two cycle of the clipped map
+\[
+F_{\eta,c}(x)
+=
+x-\eta
+\mathcal C_c^\diamond(\nabla V(x)).
+\]
+Then it is impossible to have
+\begin{equation}
+y_-\in\Omega_c^-,
+\qquad
+y_+\in\Omega_c^+,
+\label{eq:forbidden-mixed-cycle}
+\end{equation}
+or vice versa.
+
+Therefore every period-two cycle of $F_{\eta,c}$ is either entirely
+smooth, entirely clipped, or lies on the switching boundary.
+\end{proposition}
+
+\begin{proof}
+The period-two relations give
+\begin{align}
+\mathcal C_c^\diamond(\nabla V(y_+))
+&=
+\frac{y_+-y_-}{\eta},
+\label{eq:clipped-balance-plus}
+\\
+\mathcal C_c^\diamond(\nabla V(y_-))
+&=
+-\frac{y_+-y_-}{\eta}.
+\label{eq:clipped-balance-minus}
+\end{align}
+Hence
+\begin{equation}
+\left\|
+\mathcal C_c^\diamond(\nabla V(y_+))
+\right\|_\diamond
+=
+\left\|
+\mathcal C_c^\diamond(\nabla V(y_-))
+\right\|_\diamond.
+\label{eq:clipped-output-equal}
+\end{equation}
+
+For radial clipping,
+\begin{equation}
+\left\|
+\mathcal C_c^\diamond(g)
+\right\|_\diamond
+=
+\min\{\|g\|_\diamond,c\}.
+\label{eq:clipped-output-norm}
+\end{equation}
+
+Suppose, for contradiction, that
+\[
+y_-\in\Omega_c^-,
+\qquad
+y_+\in\Omega_c^+.
+\]
+Then
+\[
+\left\|
+\mathcal C_c^\diamond(\nabla V(y_-))
+\right\|_\diamond
+=
+\|\nabla V(y_-)\|_\diamond
+<
+c,
+\]
+whereas
+\[
+\left\|
+\mathcal C_c^\diamond(\nabla V(y_+))
+\right\|_\diamond
+=
+c.
+\]
+This contradicts \eqref{eq:clipped-output-equal}.
+The opposite mixed itinerary is ruled out identically.
+\end{proof}
+
+\begin{remark}[Structural consequence for the post-contact problem]
+\label{rem:no-mixed-consequence}
+Proposition~\ref{prop:no-mixed-period-two} rules out the
+mixed smooth--clipped period-two continuation that one might expect
+from a generic switching system.
+
+Thus the post-contact problem for radial gradient clipping is more
+constrained: if a period-two branch persists beyond the switching
+contact, both points must enter the clipped regime together.
+
+The corresponding post-contact continuation problem will therefore
+be formulated as a simultaneous two-point switching bifurcation,
+rather than as a mixed-itinerary continuation.
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{Summary of the switching geometry}
+\label{subsec:switching-geometry-summary}
+% ---------------------------------------------------------
+
+The preceding analysis establishes three structural facts that will
+be used in the next section.
+
+First, the period-two gradients are exactly opposite:
+\begin{equation}
+\nabla V(x_+(\mu))
+=
+-\nabla V(x_-(\mu)).
+\label{eq:summary-opposite}
+\end{equation}
+
+Second, their common clipping exposure satisfies
+\begin{equation}
+\mathscr E(\mu)
+=
+\lambda_*A_*
+\|v_*\|_\diamond
+\sqrt{\mu}
++
+O(\mu^{3/2}).
+\label{eq:summary-exposure}
+\end{equation}
+
+Third, the first switching interaction is necessarily simultaneous
+at both points of the cycle.
+
+Therefore the first-contact condition reduces to the single scalar
+equation
+\begin{equation}
+\mathscr E(\mu_{\mathrm{sc}}(c))
+=
+c.
+\label{eq:first-contact-scalar}
+\end{equation}
+
+Section~\ref{sec:separation-law} will invert
+\eqref{eq:first-contact-scalar} and derive the resulting separation
+law between the smooth flip threshold $\eta_f$ and the first
+switching-contact parameter.
+

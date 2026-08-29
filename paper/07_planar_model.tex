@@ -1,0 +1,1176 @@
+% =========================================================
+\section{A completely solvable planar gradient model}
+\label{sec:planar-model}
+% =========================================================
+
+We now present a two-dimensional model for which the smooth flip
+bifurcation, the first clipping contact, the separation coefficient,
+and the post-contact dynamics can all be computed explicitly.
+
+Consider the potential
+\begin{equation}
+V(x,y)
+=
+\frac{\lambda}{2}x^2
++
+\frac{\nu}{2}y^2
+-
+\frac{b}{4}x^4
++
+\frac{d}{6}x^6,
+\label{eq:planar-potential}
+\end{equation}
+where
+\begin{equation}
+\lambda>\nu>0,
+\qquad
+b>0,
+\qquad
+d>0,
+\qquad
+b^2<4d\lambda.
+\label{eq:planar-parameters}
+\end{equation}
+
+We use the standard Euclidean clipping norm throughout this section.
+
+The gradient is
+\begin{equation}
+\nabla V(x,y)
+=
+\begin{pmatrix}
+\lambda x-bx^3+dx^5
+\\
+\nu y
+\end{pmatrix}.
+\label{eq:planar-gradient}
+\end{equation}
+For convenience, define
+\begin{equation}
+g(x)
+:=
+\lambda x-bx^3+dx^5
+=
+x\bigl(\lambda-bx^2+dx^4\bigr).
+\label{eq:g-definition}
+\end{equation}
+
+The condition $b^2<4d\lambda$ implies
+\begin{equation}
+\lambda-bs+ds^2>0
+\qquad
+\text{for every }s\geq0,
+\label{eq:g-positive-factor}
+\end{equation}
+and hence
+\begin{equation}
+xg(x)>0
+\qquad
+\text{for every }x\neq0.
+\label{eq:g-sign}
+\end{equation}
+
+Thus $(0,0)$ is the unique critical point of $V$ and is a strict
+global minimum.
+
+% ---------------------------------------------------------
+\subsection{Verification of the standing hypotheses}
+\label{subsec:planar-hypotheses}
+% ---------------------------------------------------------
+
+At the origin,
+\begin{equation}
+H_*
+=
+D^2V(0,0)
+=
+\begin{pmatrix}
+\lambda&0
+\\
+0&\nu
+\end{pmatrix}.
+\label{eq:planar-Hessian}
+\end{equation}
+Since
+\[
+\lambda>\nu>0,
+\]
+the maximal Hessian eigenvalue is
+\begin{equation}
+\lambda_*=\lambda
+\label{eq:planar-lambda-star}
+\end{equation}
+and its normalized eigenvector is
+\begin{equation}
+v_*
+=
+e_1
+=
+\begin{pmatrix}
+1\\0
+\end{pmatrix}.
+\label{eq:planar-v-star}
+\end{equation}
+
+The flip threshold is therefore
+\begin{equation}
+\boxed{
+\eta_f
+=
+\frac{2}{\lambda}.
+}
+\label{eq:planar-flip-threshold}
+\end{equation}
+
+Since the potential is even in $x$,
+\begin{equation}
+D^3V(0,0)=0.
+\label{eq:planar-third-zero}
+\end{equation}
+Moreover,
+\begin{equation}
+D^4V(0,0)[e_1,e_1,e_1,e_1]
+=
+-6b.
+\label{eq:planar-fourth}
+\end{equation}
+
+Hence
+\begin{equation}
+\Gamma_*
+=
+-
+D^4V(0,0)[e_1^4]
+=
+6b>0.
+\label{eq:planar-Gamma}
+\end{equation}
+Thus the flip is supercritical.
+
+The first flip coefficient is
+\begin{equation}
+\boxed{
+\ell_*
+=
+\frac{\Gamma_*}{3\lambda}
+=
+\frac{2b}{\lambda}.
+}
+\label{eq:planar-ell}
+\end{equation}
+
+The general amplitude formula gives
+\begin{equation}
+\boxed{
+A_*^2
+=
+\frac{3\lambda^2}{\Gamma_*}
+=
+\frac{\lambda^2}{2b},
+}
+\label{eq:planar-A-square}
+\end{equation}
+or
+\begin{equation}
+A_*
+=
+\frac{\lambda}{\sqrt{2b}}.
+\label{eq:planar-A}
+\end{equation}
+
+Finally, the general Euclidean separation coefficient becomes
+\begin{equation}
+\boxed{
+K_2
+=
+\frac{\Gamma_*}{3\lambda^4}
+=
+\frac{2b}{\lambda^4}.
+}
+\label{eq:planar-K-general-prediction}
+\end{equation}
+
+We shall recover all of these quantities below from the exact
+dynamics.
+
+% ---------------------------------------------------------
+\subsection{Exact smooth gradient dynamics}
+\label{subsec:planar-smooth-dynamics}
+% ---------------------------------------------------------
+
+The ordinary gradient-descent map is
+\begin{equation}
+G_\eta(x,y)
+=
+\begin{pmatrix}
+(1-\eta\lambda)x
++
+\eta bx^3
+-
+\eta dx^5
+\\[1mm]
+(1-\eta\nu)y
+\end{pmatrix}.
+\label{eq:planar-GD-map}
+\end{equation}
+
+The line
+\begin{equation}
+\mathcal L
+=
+\{(x,0):x\in\mathbb R\}
+\label{eq:invariant-axis}
+\end{equation}
+is invariant.
+
+On $\mathcal L$, the dynamics reduce to the odd scalar map
+\begin{equation}
+f_\eta(x)
+=
+(1-\eta\lambda)x
++
+\eta bx^3
+-
+\eta dx^5.
+\label{eq:scalar-smooth-map}
+\end{equation}
+
+Because $f_\eta$ is odd, a symmetric period-two orbit has the form
+\[
+\{-a,a\},
+\qquad
+a>0.
+\]
+
+The condition
+\[
+f_\eta(a)=-a
+\]
+is equivalent to
+\begin{equation}
+\lambda-\frac{2}{\eta}
+=
+ba^2-da^4.
+\label{eq:smooth-cycle-equation}
+\end{equation}
+
+Set
+\begin{equation}
+q:=a^2.
+\label{eq:q-amplitude}
+\end{equation}
+Then
+\begin{equation}
+dq^2-bq
++
+\lambda-\frac{2}{\eta}
+=
+0.
+\label{eq:q-quadratic}
+\end{equation}
+
+The small-amplitude root is therefore
+\begin{equation}
+q_{\mathrm{sm}}(\eta)
+=
+\frac{
+b-
+\sqrt{
+b^2
+-
+4d\left(\lambda-\frac{2}{\eta}\right)
+}
+}{
+2d}.
+\label{eq:q-smooth-exact}
+\end{equation}
+
+Thus the smooth period-two branch is given explicitly by
+\begin{equation}
+\boxed{
+\mathcal O_{2,\mathrm{sm}}(\eta)
+=
+\left\{
+(-a_{\mathrm{sm}}(\eta),0),
+(a_{\mathrm{sm}}(\eta),0)
+\right\},
+}
+\label{eq:smooth-cycle-exact}
+\end{equation}
+where
+\begin{equation}
+a_{\mathrm{sm}}(\eta)
+=
+\sqrt{q_{\mathrm{sm}}(\eta)}.
+\label{eq:a-smooth}
+\end{equation}
+
+% ---------------------------------------------------------
+\subsection{Exact verification of the square-root law}
+\label{subsec:planar-square-root}
+% ---------------------------------------------------------
+
+Let
+\begin{equation}
+\mu
+=
+\eta-\frac{2}{\lambda}.
+\label{eq:planar-mu}
+\end{equation}
+Then
+\begin{equation}
+\lambda-\frac{2}{\eta}
+=
+\frac{\lambda^2}{2}\mu
+-
+\frac{\lambda^3}{4}\mu^2
++
+O(\mu^3).
+\label{eq:lambda-two-over-eta-expansion}
+\end{equation}
+
+Solving \eqref{eq:smooth-cycle-equation} gives
+\begin{equation}
+a_{\mathrm{sm}}(\eta)^2
+=
+\frac{\lambda^2}{2b}\mu
++
+\frac{
+\lambda^3(d\lambda-b^2)
+}{
+4b^3
+}
+\mu^2
++
+O(\mu^3).
+\label{eq:a-square-expansion}
+\end{equation}
+
+Taking the square root yields
+\begin{equation}
+a_{\mathrm{sm}}(\eta)
+=
+\frac{\lambda}{\sqrt{2b}}
+\mu^{1/2}
+\left[
+1
++
+\frac{
+\lambda(d\lambda-b^2)
+}{
+4b^2
+}
+\mu
++
+O(\mu^2)
+\right].
+\label{eq:a-expansion}
+\end{equation}
+
+Hence
+\begin{equation}
+a_{\mathrm{sm}}(\eta)
+=
+A_*\sqrt{\mu}
++
+O(\mu^{3/2}),
+\label{eq:planar-square-root-law}
+\end{equation}
+with
+\[
+A_*=\frac{\lambda}{\sqrt{2b}},
+\]
+exactly as predicted by
+\eqref{eq:planar-A}.
+
+Because the model is reflection-symmetric, the midpoint of the
+smooth two-cycle remains exactly at the critical point:
+\begin{equation}
+\frac{
+(a_{\mathrm{sm}},0)
++
+(-a_{\mathrm{sm}},0)
+}{2}
+=
+(0,0).
+\label{eq:planar-midpoint-zero}
+\end{equation}
+
+% ---------------------------------------------------------
+\subsection{Stability of the smooth period-two branch}
+\label{subsec:planar-smooth-stability}
+% ---------------------------------------------------------
+
+The derivative of the scalar map is
+\begin{equation}
+f_\eta'(x)
+=
+1-\eta\lambda
++
+3\eta bx^2
+-
+5\eta dx^4.
+\label{eq:scalar-derivative}
+\end{equation}
+
+Using the cycle equation
+\eqref{eq:smooth-cycle-equation}, one obtains
+\begin{equation}
+f_\eta'(a)
+=
+-1
++
+2\eta a^2
+\left(
+b-2da^2
+\right).
+\label{eq:scalar-derivative-cycle}
+\end{equation}
+
+Since $f_\eta'$ is even, the critical multiplier of the two-step
+map is
+\begin{equation}
+\rho_x^{\mathrm{sm}}
+=
+\left[
+-1
++
+2\eta a^2
+\left(
+b-2da^2
+\right)
+\right]^2.
+\label{eq:planar-smooth-x-multiplier}
+\end{equation}
+
+For $\mu\to0^+$,
+\begin{equation}
+\rho_x^{\mathrm{sm}}
+=
+1-4\lambda\mu
++
+O(\mu^2),
+\label{eq:planar-smooth-x-expansion}
+\end{equation}
+in agreement with
+Theorem~\ref{thm:period-two-stability}.
+
+The transverse multiplier is
+\begin{equation}
+\rho_y^{\mathrm{sm}}
+=
+(1-\eta\nu)^2.
+\label{eq:planar-smooth-y-multiplier}
+\end{equation}
+
+Since $0<\nu<\lambda$, at $\eta=\eta_f$ one has
+$|1-2\nu/\lambda|<1$, so the transverse multiplier stays inside the
+unit disk.  Consequently, the smooth period-two cycle is locally
+asymptotically stable for all sufficiently small $\eta-\eta_f>0$.
+
+% ---------------------------------------------------------
+\subsection{Exact gradient exposure}
+\label{subsec:planar-exposure}
+% ---------------------------------------------------------
+
+At the positive point of the cycle,
+\[
+\nabla V(a_{\mathrm{sm}},0)
+=
+\begin{pmatrix}
+g(a_{\mathrm{sm}})
+\\
+0
+\end{pmatrix}.
+\]
+By the exact period-two relation,
+\begin{equation}
+g(a_{\mathrm{sm}})
+=
+\frac{2a_{\mathrm{sm}}}{\eta}.
+\label{eq:planar-exact-gradient-balance}
+\end{equation}
+
+Hence the common Euclidean gradient exposure is
+\begin{equation}
+\boxed{
+\mathscr E(\eta)
+=
+\frac{2a_{\mathrm{sm}}(\eta)}{\eta}.
+}
+\label{eq:planar-exposure-exact}
+\end{equation}
+
+Using \eqref{eq:a-expansion},
+\begin{equation}
+\mathscr E(\mu)
+=
+\frac{\lambda^2}{\sqrt{2b}}
+\mu^{1/2}
+\left[
+1
++
+\frac{
+\lambda(d\lambda-3b^2)
+}{
+4b^2
+}
+\mu
++
+O(\mu^2)
+\right].
+\label{eq:planar-exposure-expansion}
+\end{equation}
+
+In particular,
+\begin{equation}
+B_*
+=
+\frac{\lambda^2}{\sqrt{2b}},
+\label{eq:planar-B}
+\end{equation}
+and therefore
+\begin{equation}
+\frac{1}{B_*^2}
+=
+\frac{2b}{\lambda^4},
+\label{eq:planar-B-inverse}
+\end{equation}
+again agreeing with the general separation coefficient
+\eqref{eq:planar-K-general-prediction}.
+
+% ---------------------------------------------------------
+\subsection{Exact switching-contact equation}
+\label{subsec:planar-contact-equation}
+% ---------------------------------------------------------
+
+The first contact occurs when
+\begin{equation}
+\frac{2a_{\mathrm{sm}}(\eta)}{\eta}
+=
+c.
+\label{eq:planar-contact-condition}
+\end{equation}
+Hence at contact
+\begin{equation}
+a_{\mathrm{sm}}
+=
+\frac{\eta c}{2}.
+\label{eq:planar-contact-amplitude}
+\end{equation}
+
+Substituting this into
+\eqref{eq:smooth-cycle-equation} gives the exact scalar equation
+\begin{equation}
+\Psi(\eta,c)
+:=
+\lambda
+-
+\frac{2}{\eta}
+-
+\frac{b}{4}\eta^2c^2
++
+\frac{d}{16}\eta^4c^4
+=
+0.
+\label{eq:Psi-contact}
+\end{equation}
+
+At
+\[
+(\eta,c)
+=
+\left(
+\frac{2}{\lambda},0
+\right),
+\]
+we have
+\[
+\Psi\left(\frac{2}{\lambda},0\right)=0
+\]
+and
+\begin{equation}
+\partial_\eta\Psi
+\left(
+\frac{2}{\lambda},0
+\right)
+=
+\frac{\lambda^2}{2}
+>0.
+\label{eq:Psi-eta-positive}
+\end{equation}
+
+Thus the implicit function theorem gives a unique smooth
+first-contact curve
+\[
+\eta=\eta_{\mathrm{sc}}(c)
+\]
+for sufficiently small $c$.
+
+% ---------------------------------------------------------
+\subsection{Exact verification of the separation law}
+\label{subsec:planar-separation}
+% ---------------------------------------------------------
+
+Write
+\begin{equation}
+\eta_{\mathrm{sc}}(c)
+=
+\frac{2}{\lambda}
++
+K_2c^2
++
+K_4c^4
++
+O(c^6).
+\label{eq:planar-eta-series}
+\end{equation}
+
+Substituting this expansion into
+\eqref{eq:Psi-contact} and comparing powers of $c$ gives
+\begin{equation}
+\boxed{
+K_2
+=
+\frac{2b}{\lambda^4},
+}
+\label{eq:planar-K2}
+\end{equation}
+and
+\begin{equation}
+\boxed{
+K_4
+=
+\frac{6b^2}{\lambda^7}
+-
+\frac{2d}{\lambda^6}.
+}
+\label{eq:planar-K4}
+\end{equation}
+
+Therefore
+\begin{equation}
+\boxed{
+\eta_{\mathrm{sc}}(c)
+=
+\frac{2}{\lambda}
++
+\frac{2b}{\lambda^4}c^2
++
+\left(
+\frac{6b^2}{\lambda^7}
+-
+\frac{2d}{\lambda^6}
+\right)c^4
++
+O(c^6).
+}
+\label{eq:planar-separation-final}
+\end{equation}
+
+The leading coefficient
+\[
+\frac{2b}{\lambda^4}
+\]
+coincides exactly with
+\[
+\frac{\Gamma_*}{3\lambda_*^4}
+=
+\frac{6b}{3\lambda^4},
+\]
+as predicted by
+Theorem~\ref{thm:quadratic-separation}.
+
+This model therefore verifies not only the quadratic exponent but
+also the absence of a cubic correction.
+
+% ---------------------------------------------------------
+\subsection{The fully clipped symmetric branch}
+\label{subsec:planar-clipped-symmetric}
+% ---------------------------------------------------------
+
+We now turn to the post-contact regime.  Define
+\begin{equation}
+a_c(\eta)
+:=
+\frac{\eta c}{2},
+\label{eq:ac-definition}
+\end{equation}
+and consider the pair
+\begin{equation}
+Y_\pm(\eta,c)
+=
+(\pm a_c(\eta),0).
+\label{eq:symmetric-clipped-pair}
+\end{equation}
+Its gradient magnitude is
+\begin{equation}
+g(a_c)
+=
+a_c
+\left(
+\lambda
+-
+ba_c^2
++
+da_c^4
+\right),
+\label{eq:g-ac}
+\end{equation}
+and a direct calculation gives
+\begin{equation}
+g(a_c)-c
+=
+\frac{\eta c}{2}
+\Psi(\eta,c),
+\label{eq:g-minus-c-Psi}
+\end{equation}
+with $\Psi$ as in \eqref{eq:Psi-contact}.  Hence $g(a_c)=c$ at
+$\eta=\eta_{\mathrm{sc}}(c)$, and since
+$\partial_\eta\Psi(\eta_{\mathrm{sc}}(c),c)>0$ for all sufficiently
+small $c$,
+\begin{equation}
+g(a_c)>c
+\qquad
+\text{for }
+\eta>\eta_{\mathrm{sc}}(c)
+\label{eq:ac-fully-clipped}
+\end{equation}
+sufficiently close to the contact value.  Both points $Y_\pm$
+therefore lie in the fully clipped region.  On the invariant axis,
+radial clipping acts as
+\[
+F_{\eta,c}(x,0)
+=
+(x-\eta c,0)\quad(g(x)>c),
+\qquad
+F_{\eta,c}(x,0)
+=
+(x+\eta c,0)\quad(|g(x)|>c,\ x<0),
+\]
+and since $2a_c=\eta c$,
+\begin{equation}
+F_{\eta,c}(a_c,0)
+=
+(-a_c,0),
+\qquad
+F_{\eta,c}(-a_c,0)
+=
+(a_c,0).
+\label{eq:clipped-symmetric-forward}
+\end{equation}
+
+Thus:
+
+\begin{proposition}[Explicit fully clipped period-two branch]
+\label{prop:explicit-clipped-branch}
+For every sufficiently small $c>0$ and every
+$\eta>\eta_{\mathrm{sc}}(c)$ sufficiently close to
+$\eta_{\mathrm{sc}}(c)$,
+\begin{equation}
+\boxed{
+\mathcal O_{2,\mathrm{clip}}(\eta,c)
+=
+\left\{
+\left(-\frac{\eta c}{2},0\right),
+\left(\frac{\eta c}{2},0\right)
+\right\}
+}
+\label{eq:explicit-clipped-cycle}
+\end{equation}
+is a fully clipped period-two orbit.
+
+Its amplitude satisfies exactly
+\begin{equation}
+\boxed{
+2a_c=\eta c.
+}
+\label{eq:exact-amplitude-saturation-planar}
+\end{equation}
+\end{proposition}
+
+% ---------------------------------------------------------
+\subsection{A continuum of clipped period-two cycles}
+\label{subsec:continuum-clipped-cycles}
+% ---------------------------------------------------------
+
+The symmetric clipped cycle is not isolated.
+
+For
+\[
+\eta>\eta_{\mathrm{sc}}(c),
+\]
+we have
+\[
+g(a_c)>c.
+\]
+By continuity, there exists $\delta>0$ such that
+\begin{equation}
+g(a_c+s)>c,
+\qquad
+g(a_c-s)>c
+\label{eq:clipped-neighborhood-condition}
+\end{equation}
+for every
+\[
+|s|<\delta.
+\]
+
+Define
+\begin{align}
+Y_+(s)
+&=
+(a_c+s,0),
+\label{eq:Y-plus-s}
+\\
+Y_-(s)
+&=
+(-a_c+s,0).
+\label{eq:Y-minus-s}
+\end{align}
+
+After reducing $\delta$ if necessary,
+\[
+a_c+s>0,
+\qquad
+-a_c+s<0.
+\]
+
+Since
+\[
+Y_+(s)-Y_-(s)
+=
+(\eta c,0),
+\]
+radial clipping gives
+\begin{align}
+F_{\eta,c}(Y_+(s))
+&=
+Y_-(s),
+\label{eq:family-forward}
+\\
+F_{\eta,c}(Y_-(s))
+&=
+Y_+(s).
+\label{eq:family-backward}
+\end{align}
+
+We therefore obtain the following stronger result.
+
+\begin{theorem}[A local family of clipped period-two cycles]
+\label{thm:family-clipped-cycles}
+For every sufficiently small $c>0$ and
+$\eta>\eta_{\mathrm{sc}}(c)$ sufficiently close to contact, there
+exists $\delta>0$ such that
+\begin{equation}
+\mathcal O_2(s)
+=
+\left\{
+(-a_c+s,0),
+(a_c+s,0)
+\right\},
+\qquad
+|s|<\delta,
+\label{eq:period-two-family}
+\end{equation}
+is a one-parameter family of fully clipped period-two cycles.
+
+Equivalently,
+\begin{equation}
+F_{\eta,c}^2(x,0)
+=
+(x,0)
+\label{eq:F2-identity-axis}
+\end{equation}
+on a nontrivial interval of the positive clipped component and on
+its image under $F_{\eta,c}$.
+\end{theorem}
+
+\begin{proof}
+For $|s|<\delta$,
+both points lie in the clipped regime by
+\eqref{eq:clipped-neighborhood-condition}.
+
+At $Y_+(s)$, the gradient points in the positive $x$ direction, so
+the clipped step is exactly
+\[
+-\eta c e_1.
+\]
+Therefore
+\[
+F_{\eta,c}(Y_+(s))
+=
+(a_c+s-\eta c,0)
+=
+(-a_c+s,0)
+=
+Y_-(s).
+\]
+
+At $Y_-(s)$, the gradient points in the negative $x$ direction, so
+the clipped step is
+\[
++\eta c e_1.
+\]
+Thus
+\[
+F_{\eta,c}(Y_-(s))
+=
+(-a_c+s+\eta c,0)
+=
+(a_c+s,0)
+=
+Y_+(s).
+\]
+\end{proof}
+
+\begin{remark}[Geometric meaning of the unit multiplier]
+\label{rem:family-unit-meaning}
+The continuum in
+Theorem~\ref{thm:family-clipped-cycles} gives a concrete nonlinear
+interpretation of the universal unit multiplier proved in
+Theorem~\ref{thm:universal-unit-main}.
+
+The neutral multiplier is not merely an artifact of linearization:
+in this model the two-step map is exactly the identity along the
+one-dimensional clipped family.
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{Exact post-contact multipliers}
+\label{subsec:planar-post-multipliers}
+% ---------------------------------------------------------
+
+Consider the period-two cycle
+\[
+\mathcal O_2(s)
+=
+\{Y_-(s),Y_+(s)\}.
+\]
+Set
+\begin{equation}
+r_+(s)
+=
+g(a_c+s),
+\qquad
+r_-(s)
+=
+g(a_c-s).
+\label{eq:r-plus-minus}
+\end{equation}
+
+At either point, the Euclidean clipping direction is parallel to
+$e_1$. Therefore
+\begin{equation}
+I-e_1e_1^\top
+=
+\begin{pmatrix}
+0&0\\
+0&1
+\end{pmatrix}.
+\label{eq:e1-projector}
+\end{equation}
+
+Since
+\[
+D^2V(x,0)
+=
+\begin{pmatrix}
+\lambda-3bx^2+5dx^4&0
+\\
+0&\nu
+\end{pmatrix},
+\]
+the one-step Jacobians along the clipped cycle are
+\begin{align}
+DF_{\eta,c}(Y_+(s))
+&=
+\begin{pmatrix}
+1&0
+\\
+0&
+1-\dfrac{\eta\nu c}{r_+(s)}
+\end{pmatrix},
+\label{eq:Jac-plus-family}
+\\
+DF_{\eta,c}(Y_-(s))
+&=
+\begin{pmatrix}
+1&0
+\\
+0&
+1-\dfrac{\eta\nu c}{r_-(s)}
+\end{pmatrix}.
+\label{eq:Jac-minus-family}
+\end{align}
+
+Hence the two-step monodromy matrix is
+\begin{equation}
+M_{\mathrm{clip}}(s)
+=
+\begin{pmatrix}
+1&0
+\\
+0&
+\displaystyle
+\left(
+1-\frac{\eta\nu c}{r_+(s)}
+\right)
+\left(
+1-\frac{\eta\nu c}{r_-(s)}
+\right)
+\end{pmatrix}.
+\label{eq:family-monodromy}
+\end{equation}
+
+Thus the two multipliers are
+\begin{equation}
+\boxed{
+\rho_x^{\mathrm{clip}}=1
+}
+\label{eq:planar-unit-multiplier}
+\end{equation}
+and
+\begin{equation}
+\boxed{
+\rho_y^{\mathrm{clip}}(s)
+=
+\left(
+1-\frac{\eta\nu c}{r_+(s)}
+\right)
+\left(
+1-\frac{\eta\nu c}{r_-(s)}
+\right).
+}
+\label{eq:planar-transverse-multiplier}
+\end{equation}
+
+For the symmetric member $s=0$,
+\begin{equation}
+\rho_y^{\mathrm{clip}}(0)
+=
+\left(
+1-\frac{\eta\nu c}{g(a_c)}
+\right)^2.
+\label{eq:symmetric-clipped-transverse}
+\end{equation}
+
+At the switching contact,
+\[
+g(a_c)=c,
+\]
+so the outer limiting transverse multiplier becomes
+\begin{equation}
+\rho_y^{\mathrm{clip}}
+=
+(1-\eta_{\mathrm{sc}}\nu)^2.
+\label{eq:transverse-contact-limit}
+\end{equation}
+
+Since
+\[
+\eta_{\mathrm{sc}}(c)
+\to
+\frac{2}{\lambda}
+\]
+as $c\to0^+$ and
+\[
+0<\nu<\lambda,
+\]
+one has
+\[
+\left|
+1-\eta_{\mathrm{sc}}(c)\nu
+\right|
+<1
+\]
+for all sufficiently small $c$.
+
+Hence the clipped family is transversely attracting while remaining
+exactly neutral along its one-dimensional period-two direction.
+
+% ---------------------------------------------------------
+\subsection{The local transition in the solvable model}
+\label{subsec:planar-transition-summary}
+% ---------------------------------------------------------
+
+The planar model provides an explicit realization of the entire
+smooth-to-clipped scenario.  For $\eta<\eta_f=2/\lambda$ the origin
+is locally asymptotically stable; for
+$\eta_f<\eta<\eta_{\mathrm{sc}}(c)$ there is a unique small stable
+smooth two-cycle
+$\{(-a_{\mathrm{sm}},0),(a_{\mathrm{sm}},0)\}$ whose amplitude
+grows as
+\[
+a_{\mathrm{sm}}
+\sim
+\frac{\lambda}{\sqrt{2b}}
+\sqrt{\eta-\eta_f}.
+\]
+At $\eta=\eta_{\mathrm{sc}}(c)$ both points reach the clipping
+boundary simultaneously with
+\[
+a_{\mathrm{sm}}
+=
+\frac{\eta_{\mathrm{sc}}c}{2},
+\qquad
+\eta_{\mathrm{sc}}(c)
+=
+\frac{2}{\lambda}
++
+\frac{2b}{\lambda^4}c^2
++
+O(c^4).
+\label{eq:planar-summary-separation}
+\]
+For $\eta>\eta_{\mathrm{sc}}(c)$ sufficiently close to contact, the
+clipped map possesses a one-parameter family of period-two cycles
+with exact step constraint $x_+-x_-=\eta c$, and the smooth critical
+multiplier $\rho_x^{\mathrm{sm}}<1$ is replaced by the exact neutral
+multiplier $\rho_x^{\mathrm{clip}}=1$.  The model thus exhibits the
+transition from a stable smooth period-two branch, through a
+simultaneous clipping contact, to a neutral family of clipped
+two-cycles.
+
+\subsection{A concrete parameter choice}
+
+To make the preceding formulas explicit, consider the parameter
+choice
+\[
+\lambda=2,\qquad
+\nu=\frac12,\qquad
+b=1,\qquad
+d=1.
+\]
+Then
+\[
+\eta_f=1,
+\qquad
+\Gamma_*=6,
+\qquad
+\ell_*=1,
+\]
+and therefore
+\[
+A_*=\sqrt{2},
+\qquad
+B_*=2\sqrt{2},
+\qquad
+K_2=\frac18.
+\]
+Hence the smooth period-two branch satisfies
+$x_\pm(\mu)=x_*\pm\sqrt{2\mu}\,v_*+O(\mu)$, while the first
+switching threshold obeys
+\[
+\eta_{\mathrm{sc}}(c)
+=
+1+\frac18c^2+O(c^4),
+\]
+with the next correction computable explicitly:
+\[
+\eta_{\mathrm{sc}}(c)
+=
+1+\frac18c^2+\frac1{64}c^4+O(c^6).
+\]
+The example thus provides an explicit realization of the general
+quadratic separation law of Section~\ref{sec:separation-law}.

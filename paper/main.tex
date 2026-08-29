@@ -1,0 +1,332 @@
+\documentclass[10pt,a4paper,twocolumn]{article}
+
+% =========================================================
+% Encoding and fonts
+% =========================================================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+% =========================================================
+% Page layout
+% =========================================================
+\usepackage[
+    a4paper,
+    left=1.30cm,
+    right=1.30cm,
+    top=1.60cm,
+    bottom=1.70cm,
+    columnsep=0.55cm
+]{geometry}
+\usepackage{setspace}
+\setstretch{1.02}
+
+% =========================================================
+% Mathematics
+% =========================================================
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{bm}
+
+% =========================================================
+% Figures and tables
+% =========================================================
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% =========================================================
+% Lists and miscellaneous
+% =========================================================
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{microtype}
+% =========================================================
+% Two-column overflow control
+% =========================================================
+
+\setlength{\emergencystretch}{1.5em}
+
+\allowdisplaybreaks[2]
+
+\setlength{\hfuzz}{0.3pt}
+\setlength{\vfuzz}{0.3pt}
+% =========================================================
+% Long formulas across two columns if needed
+% =========================================================
+\usepackage{cuted}
+
+% =========================================================
+% Hyperlinks
+% =========================================================
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+]{hyperref}
+
+\usepackage[
+    nameinlink,
+    capitalise,
+    noabbrev
+]{cleveref}
+
+% =========================================================
+% Theorem environments
+% =========================================================
+\theoremstyle{plain}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\theoremstyle{remark}
+
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+% =========================================================
+% Frequently used notation
+% =========================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\Crit}{\operatorname{Crit}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\rank}{\operatorname{rank}}
+
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cA}{\mathcal{A}}
+
+\newcommand{\Om}{\Omega}
+\newcommand{\Sig}{\Sigma}
+
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\grad}{\nabla}
+
+\newcommand{\Ws}{W^{s}}
+\newcommand{\Wu}{W^{u}}
+\newcommand{\Wlocs}{W_{\mathrm{loc}}^{s}}
+\newcommand{\Wlocu}{W_{\mathrm{loc}}^{u}}
+
+\newcommand{\spr}{\rho}
+
+% =========================================================
+% Equation numbering
+% =========================================================
+\numberwithin{equation}{section}
+
+% =========================================================
+% Title information
+% =========================================================
+\title{
+\textbf{
+Separation Laws for Flip Bifurcations and
+Endogenous Switching Boundaries in Gradient Maps
+}
+}
+
+\author{
+Zisong Yuan,
+Xiao Wen$^{\dagger}$\\[0.3em]
+Department of Mathematics, Beihang University\\[0.2em]
+$^{\dagger}$Corresponding author.
+}
+
+\date{}
+
+% =========================================================
+% Document
+% =========================================================
+\begin{document}
+
+% =========================================================
+% Full-width title + abstract
+% =========================================================
+\twocolumn[
+\begin{@twocolumnfalse}
+
+\begin{center}
+
+{\LARGE\bfseries
+Separation Laws for Flip Bifurcations and\\
+Endogenous Switching Boundaries in Gradient Maps
+}
+
+\vspace{1em}
+
+{\large Zisong Yuan, Xiao Wen$^{\dagger}$\\[0.3em]
+{\normalsize Department of Mathematics, Beihang University}\\[0.2em]
+{\footnotesize E-mail: alexsongyzs@gmail.com (Z. Yuan), wenxiao@buaa.edu.cn (X. Wen). $^{\dagger}$Corresponding author.}
+}
+
+\vspace{0.5em}
+
+\end{center}
+
+\begin{abstract}
+Gradient clipping is widely used to control large updates in
+optimization, while finite-step gradient descent develops period-two
+oscillations near the edge of linear stability.  Recent work has
+analysed these oscillations via smooth flip bifurcation theory and
+higher-order stability criteria, whereas piecewise-smooth bifurcation
+theory describes generic interactions between period-doubling and
+switching boundaries.  It remains unclear how a smooth
+gradient-descent oscillation first interacts with the switching
+surface generated endogenously by radial gradient clipping, and what
+dynamical structure emerges after this contact.
+
+For the finite-dimensional clipped gradient map
+\[
+F_{\eta,c}(x)
+=
+x-\eta\mathcal C_c^\diamond(\nabla V(x)),
+\]
+we analyse this transition near a nondegenerate strict local minimum
+with a simple maximal Hessian eigenvalue.  Clipping is locally
+inactive near the minimum, so the fixed-point stability threshold and
+the local flip bifurcation coincide with those of ordinary gradient
+descent.  Under a supercritical flip condition, the stable period-two
+branch reaches the clipping boundary at a parameter
+\[
+\eta_{\mathrm{sc}}(c)
+=
+\eta_f
++
+K_\diamond c^2
++
+O(c^4),
+\qquad
+\eta_f=\frac{2}{\lambda_*},
+\]
+where
+\[
+K_\diamond
+=
+\frac{\Gamma_*}
+{3\lambda_*^4\|v_*\|_\diamond^2}
+\]
+is determined explicitly by derivatives of the potential up to fourth
+order and by the clipping norm.
+
+Beyond the separation law, the gradient structure yields rigidity
+absent from generic switching maps: the two points of every smooth
+period-two orbit have opposite gradients and hence reach a radial
+clipping boundary simultaneously; mixed smooth--clipped period-two
+itineraries are impossible; and every fully clipped period-two orbit
+has an exact unit Floquet multiplier and is therefore nonhyperbolic.
+A solvable planar model realizes the full transition from a stable
+smooth two-cycle to a neutral family of fully clipped period-two
+cycles.
+\end{abstract}
+
+\vspace{0.8em}
+
+\noindent
+\textbf{Keywords.}
+gradient maps;
+gradient clipping;
+flip bifurcation;
+period-doubling bifurcation;
+piecewise-smooth dynamical systems;
+switching hypersurfaces;
+border collision;
+periodic orbits.
+
+\vspace{0.5em}
+
+
+
+\noindent
+
+
+\vspace{1.2em}
+
+\end{@twocolumnfalse}
+]
+
+% =========================================================
+% Main text
+% =========================================================
+
+\input{00_introduction}
+
+\input{01_setting}
+
+\input{02_local_structure}
+
+\input{03_flip_bifurcation}
+
+\input{04_switching_geometry}
+
+\input{05_separation_law}
+
+\input{06_post_contact_dynamics}
+
+\input{07_planar_model}
+
+\input{08_conclusion}
+
+
+
+% To be completed before submission.
+
+% =========================================================
+% Bibliography
+% =========================================================
+
+\bibliographystyle{unsrt}
+\nocite{*}
+\bibliography{references}
+
+% =========================================================
+% Statements and declarations
+% =========================================================
+
+\section*{Statements and Declarations}
+
+\paragraph{Data availability statement.}
+Data sharing is not applicable to this article as no datasets were
+generated or analysed during the current study.
+
+\paragraph{Conflict of interest.}
+The authors declare that they have no conflict of interest.
+
+\paragraph{Use of AI tools.}
+During the preparation of this work, the authors used the DeepSeek
+V4 Harness (deepseek-v4-flash model) for \LaTeX{} typesetting,
+compilation, and manuscript-preparation assistance, and OpenAI
+ChatGPT (GPT-5.6 Sol) for mathematical discussion, language editing,
+and manuscript organization.  All mathematical arguments,
+references, and conclusions were independently checked by the
+authors, who take full responsibility for the manuscript.
+
+\paragraph{Author contributions.}
+Both authors contributed to the conception, analysis, and writing of
+the manuscript.
+
+\paragraph{Funding.}
+The authors declare that no specific funding was received for this
+work.
+
+\end{document}

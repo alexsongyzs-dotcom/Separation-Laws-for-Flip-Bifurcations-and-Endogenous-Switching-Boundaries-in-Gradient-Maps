@@ -1,0 +1,811 @@
+
+% =========================================================
+\section{Smooth flip bifurcation and the emerging period-two branch}
+\label{sec:flip-bifurcation}
+% =========================================================
+
+In this section we study the smooth gradient map
+\[
+G_\eta(x)=x-\eta\nabla V(x)
+\]
+near the critical step size
+\[
+\eta_f=\frac{2}{\lambda_*}.
+\]
+
+The local mechanism considered here is the classical simple flip
+bifurcation of a smooth discrete map
+\cite{Kuznetsov2004,GuckenheimerHolmes1983}.
+For gradient-descent dynamics, Mulayoff and Stich
+\cite{MulayoffStich2026} recently derived a multivariate nonlinear
+stability criterion involving the second-, third-, and fourth-order
+derivatives of the potential, while Gan \cite{Gan2026} formulated
+edge-of-stability dynamics in a systematic bifurcation-theoretic
+framework.
+
+Accordingly, the existence of a smooth period-two branch is not the
+new contribution of the present paper.  We reproduce the local
+reduction because its explicit coefficient enters the
+switching-separation law derived later; we therefore give a
+self-contained center-manifold and normal-form derivation in the
+notation of the present paper.
+
+By the local identity theorem established in Section~3, the
+resulting local bifurcation structure is inherited exactly by the
+clipped map $F_{\eta,c}$ as long as the bifurcating orbit remains
+inside the smooth region $\Omega_c^-$.
+
+Throughout this section we write
+\begin{equation}
+\mu
+=
+\eta-\eta_f.
+\label{eq:flip-mu}
+\end{equation}
+Thus the bifurcation point corresponds to $\mu=0$.
+
+Under \textbf{(H2)--(H3)}, the multiplier associated with $v_*$ is
+\begin{equation}
+\rho_*(\mu)
+=
+1-(\eta_f+\mu)\lambda_*
+=
+-1-\lambda_*\mu,
+\label{eq:critical-multiplier-mu}
+\end{equation}
+whereas all remaining multipliers lie strictly inside the unit disk
+at $\mu=0$.
+
+The nonlinear character of the bifurcation is governed by the
+coefficient
+\[
+\ell_*
+=
+\frac{\Gamma_*}{3\lambda_*},
+\]
+defined in \eqref{eq:ell-star}.  Assumption \textbf{(H4)} gives
+\[
+\ell_*>0,
+\]
+which corresponds to the supercritical case.
+
+% ---------------------------------------------------------
+\subsection{Parameter-dependent center reduction}
+\label{subsec:parameter-center-reduction}
+% ---------------------------------------------------------
+
+Translate the critical point to the origin, $y=x-x_*$, and define
+\begin{equation}
+\Phi_\mu(y)
+:=
+G_{\eta_f+\mu}(x_*+y)-x_*.
+\label{eq:Phi-mu}
+\end{equation}
+Then $\Phi_\mu(0)=0$ for every sufficiently small $\mu$, and at
+$\mu=0$,
+\begin{equation}
+D\Phi_0(0)
+=
+I-\eta_fH_*,
+\label{eq:Phi-linearization}
+\end{equation}
+whose unique critical multiplier is $-1$ with eigenvector $v_*$; the
+complementary spectrum lies strictly inside the unit disk.
+
+To incorporate the bifurcation parameter, consider the extended map
+\begin{equation}
+(y,\mu)
+\longmapsto
+\bigl(\Phi_\mu(y),\mu\bigr).
+\label{eq:extended-map}
+\end{equation}
+Its two-dimensional local center manifold is associated with the
+critical state direction $v_*$ and the neutral parameter direction,
+and after restricting to a sufficiently small neighborhood can be
+represented as
+\begin{equation}
+y
+=
+zv_*+h(z,\mu),
+\label{eq:center-parametrization}
+\end{equation}
+with
+\begin{equation}
+h(z,\mu)\in v_*^\perp,
+\qquad
+h(0,\mu)=0,
+\qquad
+D_zh(0,0)=0,
+\qquad
+h(z,\mu)
+=
+O\bigl(z^2+|\mu||z|\bigr).
+\label{eq:center-h-properties}
+\end{equation}
+The dynamics on the center manifold are described by the scalar map
+\begin{equation}
+z_{n+1}
+=
+f_\mu(z_n).
+\label{eq:reduced-map}
+\end{equation}
+
+% ---------------------------------------------------------
+\subsection{Flip normal form}
+\label{subsec:flip-normal-form}
+% ---------------------------------------------------------
+
+We next record the local normal form required for the asymptotic
+analysis.
+
+\begin{proposition}[Reduced flip normal form]
+\label{prop:flip-normal-form}
+Assume \textbf{(H1)--(H4)}.
+There exist local state and parameter coordinates, preserving
+$\mu=0$ and $z=0$, in which the reduced map
+\eqref{eq:reduced-map} takes the form
+\begin{equation}
+f_\mu(z)
+=
+-\bigl(1+\lambda_*\mu\bigr)z
++
+\ell_*z^3
++
+R(z,\mu),
+\label{eq:flip-normal-form}
+\end{equation}
+where
+\begin{equation}
+R(z,\mu)
+=
+O\left(
+|z|^4
++
+|\mu||z|^2
++
+\mu^2|z|
+\right)
+\label{eq:flip-remainder}
+\end{equation}
+as $(z,\mu)\to(0,0)$.
+
+The cubic coefficient is
+\begin{equation}
+\ell_*
+=
+\frac{\eta_f}{6}
+\left(
+3T_*[v_*,v_*,H_*^{-1}g_*]
+-
+Q_*[v_*,v_*,v_*,v_*]
+\right),
+\label{eq:flip-coefficient-section3}
+\end{equation}
+or equivalently
+\begin{equation}
+\ell_*
+=
+\frac{\Gamma_*}{3\lambda_*}.
+\label{eq:flip-coefficient-Gamma}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The critical multiplier $-1$ is simple and crosses the unit circle
+transversally (Section~\ref{subsec:spectral-consequences}), so the
+standard parameter-dependent center-manifold and flip-normal-form
+reductions apply; see \cite{Carr1981,HirschPughShub1977,Kuznetsov2004}.
+The linear parameter coefficient is $\rho_*(\mu)=-1-\lambda_*\mu$
+by \eqref{eq:critical-multiplier-mu}, and the quadratic term is
+eliminated by the standard near-identity transformation for a simple
+flip; the remaining cubic coefficient is the first flip coefficient.
+
+For the gradient map
+\[
+G_\eta(x)=x-\eta\nabla V(x),
+\]
+one has
+\begin{align}
+D^2G_{\eta_f}(x_*)[u,w]
+&=
+-\eta_f
+T_*[u,w,\cdot]^\sharp,
+\label{eq:D2G}
+\\
+D^3G_{\eta_f}(x_*)[u,w,q]
+&=
+-\eta_f
+Q_*[u,w,q,\cdot]^\sharp.
+\label{eq:D3G}
+\end{align}
+The standard flip-coefficient formula therefore gives
+\[
+\ell_*
+=
+\frac{\eta_f}{2}
+T_*[v_*,v_*,H_*^{-1}g_*]
+-
+\frac{\eta_f}{6}
+Q_*[v_*,v_*,v_*,v_*].
+\]
+Using
+\[
+\eta_f=\frac{2}{\lambda_*}
+\]
+and the definition of $\Gamma_*$ in
+\eqref{eq:Gamma-star} yields
+\[
+\ell_*
+=
+\frac{\Gamma_*}{3\lambda_*}.
+\]
+
+The remainder estimate
+\eqref{eq:flip-remainder} follows from the regularity in
+\textbf{(H1)} and the parameter-dependent near-identity normal-form
+transformation.
+\end{proof}
+
+\begin{remark}
+\label{rem:flip-sign-convention}
+The sign convention in \eqref{eq:flip-normal-form} is fixed
+throughout the paper:
+\[
+\ell_*>0
+\]
+corresponds to a supercritical flip bifurcation, with a stable
+period-two branch emerging for $\mu>0$.
+This convention is consistent with the multivariate
+gradient-descent flip criterion encoded by \textbf{(H4)}.
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{The second iterate}
+\label{subsec:second-iterate}
+% ---------------------------------------------------------
+
+The bifurcating period-two orbit is most conveniently obtained from
+the fixed points of the second iterate.
+
+\begin{lemma}[Expansion of the second iterate]
+\label{lem:second-iterate-expansion}
+Under the hypotheses of
+Proposition~\ref{prop:flip-normal-form},
+\begin{equation}
+f_\mu^2(z)-z
+=
+2\lambda_*\mu z
+-
+2\ell_*z^3
++
+\mathcal R_2(z,\mu),
+\label{eq:second-iterate-expansion}
+\end{equation}
+where
+\begin{equation}
+\mathcal R_2(z,\mu)
+=
+O\left(
+|z|^4
++
+|\mu||z|^2
++
+\mu^2|z|
+\right).
+\label{eq:second-iterate-remainder}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Write
+\[
+a_\mu:=1+\lambda_*\mu.
+\]
+Then
+\[
+f_\mu(z)
+=
+-a_\mu z+\ell_*z^3+R(z,\mu).
+\]
+Ignoring terms of order contained in
+\eqref{eq:second-iterate-remainder}, one obtains
+\begin{align}
+f_\mu^2(z)
+&=
+-a_\mu
+\left(
+-a_\mu z+\ell_*z^3
+\right)
++
+\ell_*
+\left(
+-a_\mu z
+\right)^3
++
+\mathcal R_2(z,\mu)
+\nonumber\\
+&=
+a_\mu^2z
+-
+\ell_*a_\mu(1+a_\mu^2)z^3
++
+\mathcal R_2(z,\mu).
+\label{eq:second-compose}
+\end{align}
+Since
+\[
+a_\mu^2
+=
+1+2\lambda_*\mu+O(\mu^2)
+\]
+and
+\[
+a_\mu(1+a_\mu^2)
+=
+2+O(\mu),
+\]
+we obtain
+\[
+f_\mu^2(z)-z
+=
+2\lambda_*\mu z
+-
+2\ell_*z^3
++
+\mathcal R_2(z,\mu).
+\]
+The stated remainder estimate follows by substituting
+\eqref{eq:flip-remainder} into the composition.
+\end{proof}
+
+Equation \eqref{eq:second-iterate-expansion} exhibits explicitly the
+balance responsible for the square-root amplitude law:
+\[
+\lambda_*\mu
+\sim
+\ell_*z^2.
+\]
+
+% ---------------------------------------------------------
+\subsection{Existence and amplitude of the period-two branch}
+\label{subsec:period-two-amplitude}
+% ---------------------------------------------------------
+
+We now obtain the local period-two branch together with its leading
+amplitude.
+
+\begin{theorem}[Supercritical period-two branch]
+\label{thm:period-two-branch}
+Assume \textbf{(H1)--(H4)}.
+There exists $\mu_0>0$ such that for every
+\[
+0<\mu<\mu_0,
+\]
+the smooth gradient map $G_{\eta_f+\mu}$ possesses a unique local
+period-two cycle
+\begin{equation}
+\mathcal O_2(\mu)
+=
+\left\{
+x_-(\mu),x_+(\mu)
+\right\}
+\label{eq:period-two-cycle}
+\end{equation}
+in a sufficiently small neighborhood of $x_*$.
+
+The two points satisfy
+\begin{equation}
+x_\pm(\mu)
+=
+x_*
+\pm
+A_*\mu^{1/2}v_*
++
+O(\mu),
+\qquad
+\mu\to0^+,
+\label{eq:period-two-x-expansion}
+\end{equation}
+where
+\begin{equation}
+A_*
+=
+\sqrt{\frac{\lambda_*}{\ell_*}}
+\label{eq:A-star-ell}
+\end{equation}
+and therefore
+\begin{equation}
+A_*^2
+=
+\frac{3\lambda_*^2}{\Gamma_*}.
+\label{eq:A-star-Gamma}
+\end{equation}
+
+The labeling may be chosen so that
+\begin{equation}
+G_{\eta_f+\mu}(x_+(\mu))
+=
+x_-(\mu),
+\qquad
+G_{\eta_f+\mu}(x_-(\mu))
+=
+x_+(\mu).
+\label{eq:period-two-exchange}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+We first work in the reduced coordinate $z$.
+
+Set
+\[
+\mu=\varepsilon^2,
+\qquad
+\varepsilon>0,
+\]
+and seek nonzero solutions of
+\[
+f_{\varepsilon^2}^2(z)-z=0
+\]
+in the form
+\[
+z=\varepsilon w.
+\]
+By Lemma~\ref{lem:second-iterate-expansion},
+\begin{align}
+f_{\varepsilon^2}^2(\varepsilon w)-\varepsilon w
+&=
+2\lambda_*\varepsilon^3w
+-
+2\ell_*\varepsilon^3w^3
++
+O(\varepsilon^4)
+\nonumber\\
+&=
+2\varepsilon^3
+\left[
+w(\lambda_*-\ell_*w^2)
++
+O(\varepsilon)
+\right].
+\label{eq:scaled-second-iterate}
+\end{align}
+
+Define the rescaled bifurcation equation
+\begin{equation}
+\mathscr F(w,\varepsilon)
+:=
+\frac{
+f_{\varepsilon^2}^2(\varepsilon w)-\varepsilon w
+}{
+2\varepsilon^3
+},
+\qquad
+\varepsilon>0.
+\label{eq:rescaled-F}
+\end{equation}
+Under \textbf{(H1)} the rescaled map extends as a $C^3$ function to
+$\varepsilon=0$: since $V\in C^7$, the gradient map $G_\eta$ is
+$C^6$, and by the parameter-dependent flip reduction so is the
+reduced map $f_\mu$; the numerator in \eqref{eq:rescaled-F} is
+therefore $C^6$ in $(\varepsilon,w)$ and vanishes to third order in
+$\varepsilon$, so dividing by $2\varepsilon^3$ yields a $C^3$
+function.  We set
+\begin{equation}
+\mathscr F(w,0)
+=
+w(\lambda_*-\ell_*w^2).
+\label{eq:rescaled-limit}
+\end{equation}
+
+Since $\ell_*>0$, the nonzero zeros of
+$\mathscr F(\cdot,0)$ are
+\begin{equation}
+w_\pm^0
+=
+\pm
+\sqrt{\frac{\lambda_*}{\ell_*}}.
+\label{eq:w0}
+\end{equation}
+Furthermore,
+\begin{align}
+\partial_w\mathscr F(w_\pm^0,0)
+&=
+\lambda_*
+-
+3\ell_*(w_\pm^0)^2
+\nonumber\\
+&=
+-2\lambda_*
+\neq0.
+\label{eq:IFT-nondegenerate}
+\end{align}
+The implicit function theorem therefore yields two branches
+\[
+w_\pm(\varepsilon)
+=
+w_\pm^0+O(\varepsilon).
+\]
+Consequently,
+\begin{align}
+z_\pm(\mu)
+&=
+\varepsilon w_\pm(\varepsilon)
+\nonumber\\
+&=
+\pm
+\sqrt{\frac{\lambda_*}{\ell_*}}
+\sqrt{\mu}
++
+O(\mu).
+\label{eq:z-period-two}
+\end{align}
+
+The fixed point $z=0$ is locally the only fixed point of
+$f_\mu$ near the origin.  Indeed,
+\[
+\partial_z(f_0(z)-z)\big|_{z=0}
+=
+-2
+\neq0,
+\]
+so the implicit function theorem excludes nearby nonzero
+period-one fixed points.  Hence the two nonzero solutions
+$z_\pm(\mu)$ of
+\[
+f_\mu^2(z)=z
+\]
+have prime period two.
+
+Returning to the original coordinates through
+\eqref{eq:center-parametrization},
+\[
+x_\pm(\mu)
+=
+x_*
++
+z_\pm(\mu)v_*
++
+h(z_\pm(\mu),\mu).
+\]
+Since
+\[
+h(z,\mu)
+=
+O(z^2+|\mu||z|)
+\]
+and
+\[
+z_\pm(\mu)=O(\sqrt{\mu}),
+\]
+we have
+\[
+h(z_\pm(\mu),\mu)=O(\mu).
+\]
+Therefore
+\[
+x_\pm(\mu)
+=
+x_*
+\pm
+\sqrt{\frac{\lambda_*}{\ell_*}}
+\sqrt{\mu}\,v_*
++
+O(\mu),
+\]
+which proves \eqref{eq:period-two-x-expansion}.
+
+Finally, the two nonzero points form a single two-cycle, so after
+possibly interchanging the labels we obtain
+\eqref{eq:period-two-exchange}.
+
+The uniqueness of the sufficiently small period-two cycle follows
+from the local center-manifold reduction and the uniqueness of the
+two nonzero solution branches of the reduced second-iterate
+equation.
+\end{proof}
+
+% ---------------------------------------------------------
+\subsection{Stability of the emerging cycle}
+\label{subsec:period-two-stability}
+% ---------------------------------------------------------
+
+We next verify the local stability of the branch.
+
+\begin{theorem}[Stability of the supercritical period-two cycle]
+\label{thm:period-two-stability}
+Under \textbf{(H1)--(H4)}, the period-two cycle
+$\mathcal O_2(\mu)$ given by
+Theorem~\ref{thm:period-two-branch} is locally asymptotically stable
+for all sufficiently small $\mu>0$.
+
+Along the critical center direction, the multiplier of the
+two-step map satisfies
+\begin{equation}
+\rho_{\mathrm{cyc}}^{c}(\mu)
+=
+1-4\lambda_*\mu
++
+O(\mu^{3/2}),
+\qquad
+\mu\to0^+.
+\label{eq:critical-cycle-multiplier}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Differentiate the expansion
+\eqref{eq:second-iterate-expansion}:
+\begin{equation}
+(f_\mu^2)'(z)
+=
+1
++
+2\lambda_*\mu
+-
+6\ell_*z^2
++
+O\left(
+|z|^3
++
+|\mu||z|
++
+\mu^2
+\right).
+\label{eq:second-iterate-derivative}
+\end{equation}
+At either point $z=z_\pm(\mu)$,
+Theorem~\ref{thm:period-two-branch} gives
+\[
+z_\pm(\mu)^2
+=
+\frac{\lambda_*}{\ell_*}\mu
++
+O(\mu^{3/2}).
+\]
+Hence
+\begin{align}
+(f_\mu^2)'(z_\pm(\mu))
+&=
+1
++
+2\lambda_*\mu
+-
+6\lambda_*\mu
++
+O(\mu^{3/2})
+\nonumber\\
+&=
+1
+-
+4\lambda_*\mu
++
+O(\mu^{3/2}).
+\end{align}
+Thus the center multiplier lies strictly inside the unit disk for
+all sufficiently small $\mu>0$.
+
+At $\mu=0$, every transverse multiplier of the two-step map equals
+\[
+\rho_i(\eta_f)^2,
+\qquad
+i=1,\ldots,d-1,
+\]
+and by \eqref{eq:noncritical-spectrum},
+\[
+|\rho_i(\eta_f)|<1.
+\]
+Therefore
+\[
+\rho_i(\eta_f)^2<1.
+\]
+By continuity, all transverse multipliers remain strictly inside the
+unit disk along the sufficiently small period-two branch.
+
+The reduction principle then implies local asymptotic stability of
+the full period-two cycle.
+\end{proof}
+
+\begin{remark}
+\label{rem:cycle-multiplier-meaning}
+Equation \eqref{eq:critical-cycle-multiplier} shows that the
+newly created cycle is only weakly attracting immediately after the
+flip:
+\[
+\rho_{\mathrm{cyc}}^{c}(\mu)\to1^-
+\qquad
+\text{as }\mu\to0^+.
+\]
+This weak attraction is relevant later when the branch approaches
+the switching hypersurface, because the switching interaction occurs
+on a parameter scale that also tends to zero with $c$.
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{Transfer to the clipped map before switching}
+\label{subsec:transfer-clipped}
+% ---------------------------------------------------------
+
+We finally transfer the preceding smooth bifurcation result to the
+clipped map.
+
+\begin{corollary}[Pre-contact period-two cycle for the clipped map]
+\label{cor:precontact-clipped-cycle}
+Assume \textbf{(H1)--(H5)} and fix $c>0$.
+Then there exists
+\[
+\mu_c>0
+\]
+such that for every
+\[
+0<\mu<\mu_c,
+\]
+the clipped map
+\[
+F_{\eta_f+\mu,c}
+\]
+possesses the same locally asymptotically stable period-two cycle
+$\mathcal O_2(\mu)$ as the smooth gradient map
+$G_{\eta_f+\mu}$.
+
+Moreover,
+\begin{equation}
+x_\pm(\mu)
+\in
+\Omega_c^-,
+\qquad
+0<\mu<\mu_c.
+\label{eq:cycle-inside-smooth-region}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+For the fixed value $c>0$, let $r_c>0$ be given by
+Theorem~\ref{thm:local-identity}. By
+Theorem~\ref{thm:period-two-branch},
+\[
+x_\pm(\mu)\to x_*
+\qquad
+\text{as }\mu\to0^+.
+\]
+Hence there exists $\mu_c>0$ such that
+\[
+x_\pm(\mu)\in B_{r_c}(x_*)
+\subset\Omega_c^-
+\]
+for every $0<\mu<\mu_c$.
+
+On this ball,
+\[
+F_{\eta_f+\mu,c}
+=
+G_{\eta_f+\mu}
+\]
+by Theorem~\ref{thm:local-identity}. Therefore the two maps have
+exactly the same period-two cycle and the same local derivatives
+along that cycle.  Its local asymptotic stability follows from
+Theorem~\ref{thm:period-two-stability}.
+\end{proof}
+
+\begin{remark}[The first possible effect of clipping]
+\label{rem:first-clipping-effect}
+Corollary~\ref{cor:precontact-clipped-cycle} shows that the
+period-two branch is born entirely inside the smooth region.
+Therefore clipping does not influence either its creation or its
+initial stability.
+
+The first possible effect of clipping occurs only when one of the
+points $x_\pm(\mu)$ reaches the endogenous switching hypersurface
+\[
+\Sigma_c
+=
+\left\{
+x:
+\|\nabla V(x)\|_\diamond=c
+\right\}.
+\]
+Determining the parameter value of this first contact is the central
+problem of Sections~\ref{sec:switching-geometry} and
+\ref{sec:separation-law}.
+\end{remark}
+

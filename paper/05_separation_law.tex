@@ -1,0 +1,959 @@
+
+% =========================================================
+\section{The flip-to-switching separation law}
+\label{sec:separation-law}
+% =========================================================
+
+We now determine the parameter value at which the smooth
+period-two branch created at the flip bifurcation first reaches the
+gradient-clipping boundary.
+
+Recall that
+\[
+\mu=\eta-\eta_f,
+\qquad
+\eta_f=\frac{2}{\lambda_*},
+\]
+and let
+\[
+\mathcal O_2(\mu)
+=
+\{x_-(\mu),x_+(\mu)\}
+\]
+denote the smooth period-two branch constructed in
+Theorem~\ref{thm:period-two-branch}.
+
+By Proposition~\ref{prop:exact-gradient-balance}, the two points of
+the cycle have exactly opposite gradients:
+\[
+\nabla V(x_+(\mu))
+=
+-\nabla V(x_-(\mu)).
+\]
+Hence they have a common clipping exposure
+\begin{equation}
+\mathscr E(\mu)
+:=
+\|\nabla V(x_+(\mu))\|_\diamond
+=
+\|\nabla V(x_-(\mu))\|_\diamond.
+\label{eq:section5-exposure}
+\end{equation}
+
+The first switching contact therefore occurs when the single scalar
+condition
+\begin{equation}
+\mathscr E(\mu)=c
+\label{eq:contact-equation}
+\end{equation}
+is satisfied.
+
+The main purpose of this section is to solve
+\eqref{eq:contact-equation} asymptotically as $c\to0^+$.
+
+Quadratic tangency between period-doubling and border-collision
+loci is known for generic piecewise-smooth maps
+\cite{SimpsonMeiss2009}.
+Accordingly, the exponent two obtained below is not claimed as a
+generic new border-collision phenomenon.
+
+The contribution here is the explicit gradient-induced coefficient,
+the simultaneous nature of the two-point contact, and the improved
+even-power remainder resulting from the exact gradient-balance
+structure.
+
+% ---------------------------------------------------------
+\subsection{Factorization of the gradient exposure}
+\label{subsec:exposure-factorization}
+% ---------------------------------------------------------
+
+The square-root law in
+Theorem~\ref{thm:exposure-expansion} can be strengthened into a
+factorized form that is particularly convenient for inversion.
+
+\begin{lemma}[Exposure factorization]
+\label{lem:exposure-factorization}
+Assume {\rm (H1)--(H5)}. There exist $\mu_0>0$ and a positive
+$C^1$ function
+\[
+\beta:[0,\mu_0)\to(0,\infty)
+\]
+such that
+\[
+E(\mu)=\sqrt{\mu}\,\beta(\mu),
+\qquad
+0\leq\mu<\mu_0,
+\]
+with
+\[
+\beta(0)
+=
+B_*
+=
+\lambda_*A_*\|v_*\|_\diamond.
+\]
+Consequently,
+\[
+B_*^2
+=
+\frac{3\lambda_*^4\|v_*\|_\diamond^2}{\Gamma_*}.
+\]
+\end{lemma}
+
+\begin{proof}
+Introduce the signed square-root parameter
+\[
+\varepsilon^2=\mu.
+\]
+By Proposition~\ref{prop:refined-cycle-expansion}, the
+half-difference of the period-two orbit satisfies
+\[
+d(-\varepsilon)=-d(\varepsilon)
+\]
+and
+\[
+d(\varepsilon)
+=
+A_*\varepsilon v_*
++
+O(\varepsilon^3).
+\]
+
+The signed parametrization of
+Section~\ref{subsec:square-root-parity} shows that $d$ is a $C^3$
+odd function of $\varepsilon$.  Hence it can be written locally as
+\begin{equation}
+d(\varepsilon)
+=
+\varepsilon q(\varepsilon^2),
+\label{eq:d-factorization}
+\end{equation}
+where $q$ is a $C^1$ function and
+\begin{equation}
+q(0)=A_*v_*.
+\label{eq:q-zero}
+\end{equation}
+
+By the exact gradient-balance identity
+\eqref{eq:exact-exposure-d},
+\[
+\mathscr E(\mu)
+=
+\frac{2}{\eta_f+\mu}
+\|d(\sqrt{\mu})\|_\diamond.
+\]
+Substituting \eqref{eq:d-factorization} gives
+\[
+\mathscr E(\mu)
+=
+\sqrt{\mu}
+\frac{2}{\eta_f+\mu}
+\|q(\mu)\|_\diamond.
+\]
+Thus define
+\begin{equation}
+\beta(\mu)
+:=
+\frac{2}{\eta_f+\mu}
+\|q(\mu)\|_\diamond.
+\label{eq:beta-definition}
+\end{equation}
+
+Since
+\[
+q(0)=A_*v_*\neq0
+\]
+and the norm $\|\cdot\|_\diamond$ is smooth away from the
+origin by {\rm (H5)}, the function $\beta$ is $C^1$ after
+reducing $\mu_0$ if necessary.
+
+Furthermore,
+\begin{align}
+\beta(0)
+&=
+\frac{2}{\eta_f}
+\|A_*v_*\|_\diamond
+\nonumber\\
+&=
+\lambda_*A_*\|v_*\|_\diamond
+=
+B_*,
+\end{align}
+because
+\[
+\frac{2}{\eta_f}=\lambda_*.
+\]
+
+Finally,
+\[
+A_*^2
+=
+\frac{3\lambda_*^2}{\Gamma_*}
+\]
+by Proposition~\ref{prop:amplitude-identity}. Hence
+\[
+B_*^2
+=
+\lambda_*^2A_*^2\|v_*\|_\diamond^2
+=
+\frac{
+3\lambda_*^4\|v_*\|_\diamond^2
+}{
+\Gamma_*
+}.
+\]
+\end{proof}
+
+\begin{remark}
+\label{rem:exposure-factorization-importance}
+The factorization
+\[
+\mathscr E(\mu)
+=
+\sqrt{\mu}\,\beta(\mu)
+\]
+is stronger than a formal leading-order expansion.
+It separates the universal square-root bifurcation scale from a
+regular geometric factor $\beta(\mu)$.
+
+This form will allow the first-contact problem to be reduced to a
+regular implicit-function problem in the variable $c^2$.
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{Monotonicity and uniqueness of the first contact}
+\label{subsec:contact-uniqueness}
+% ---------------------------------------------------------
+
+We next show that the exposure increases strictly along the newborn
+period-two branch.
+
+\begin{proposition}[Local monotonicity of the exposure]
+\label{prop:exposure-monotonicity}
+There exists $\mu_1>0$ such that
+\begin{equation}
+\frac{d}{d\mu}\mathscr E(\mu)>0
+\qquad
+\text{for all }
+0<\mu<\mu_1.
+\label{eq:exposure-monotonicity}
+\end{equation}
+Consequently, $\mathscr E$ is strictly increasing on
+$(0,\mu_1)$.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:exposure-factorization},
+\[
+\mathscr E(\mu)
+=
+\sqrt{\mu}\,\beta(\mu),
+\]
+where
+\[
+\beta(0)=B_*>0.
+\]
+For $\mu>0$,
+\begin{equation}
+\mathscr E'(\mu)
+=
+\frac{\beta(\mu)}{2\sqrt{\mu}}
++
+\sqrt{\mu}\,\beta'(\mu).
+\label{eq:exposure-derivative}
+\end{equation}
+
+Since $\beta$ is continuous and $\beta(0)=B_*>0$, there exists
+$\mu_1>0$ such that
+\[
+\beta(\mu)\geq\frac{B_*}{2}
+\]
+for $0\leq\mu<\mu_1$.
+Moreover, $\beta'$ is bounded on this interval. Therefore the first
+term in \eqref{eq:exposure-derivative}, which is of order
+$\mu^{-1/2}$, dominates the second term for sufficiently small
+$\mu>0$.
+
+Hence
+\[
+\mathscr E'(\mu)>0
+\]
+after reducing $\mu_1$ if necessary.
+\end{proof}
+
+We may therefore define the first-contact parameter unambiguously.
+
+\begin{definition}[First switching-contact parameter]
+\label{def:first-contact}
+For sufficiently small $c>0$, let
+$\mu_{\mathrm{sc}}(c)$ denote the unique positive solution of
+\begin{equation}
+\mathscr E(\mu_{\mathrm{sc}}(c))=c.
+\label{eq:mu-sc-definition}
+\end{equation}
+The corresponding step size is
+\begin{equation}
+\eta_{\mathrm{sc}}(c)
+:=
+\eta_f+\mu_{\mathrm{sc}}(c).
+\label{eq:eta-sc-definition}
+\end{equation}
+\end{definition}
+
+% ---------------------------------------------------------
+\subsection{The quadratic separation law}
+\label{subsec:quadratic-separation}
+% ---------------------------------------------------------
+
+We now state the central result of the paper.
+
+\begin{theorem}[Flip-to-switching separation law]
+\label{thm:quadratic-separation}
+Assume \textbf{(H1)--(H5)}.
+There exists $c_0>0$ such that for every
+\[
+0<c<c_0
+\]
+the first-contact parameter
+$\eta_{\mathrm{sc}}(c)$ is well defined and unique.
+
+As $c\to0^+$,
+\begin{equation}
+\boxed{
+\eta_{\mathrm{sc}}(c)-\eta_f
+=
+K_\diamond c^2
++
+O(c^4)
+}
+\label{eq:main-separation-law}
+\end{equation}
+where
+\begin{equation}
+\boxed{
+K_\diamond
+=
+\frac{1}{
+\lambda_*^2A_*^2
+\|v_*\|_\diamond^2
+}
+}
+\label{eq:K-A}
+\end{equation}
+or, equivalently,
+\begin{equation}
+\boxed{
+K_\diamond
+=
+\frac{\ell_*}{
+\lambda_*^3
+\|v_*\|_\diamond^2
+}
+}
+\label{eq:K-ell}
+\end{equation}
+and
+\begin{equation}
+\boxed{
+K_\diamond
+=
+\frac{\Gamma_*}{
+3\lambda_*^4
+\|v_*\|_\diamond^2
+}.
+}
+\label{eq:K-Gamma}
+\end{equation}
+
+In particular,
+\begin{equation}
+\lim_{c\to0^+}
+\frac{
+\eta_{\mathrm{sc}}(c)-\eta_f
+}{
+c^2
+}
+=
+K_\diamond>0.
+\label{eq:K-limit}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:exposure-monotonicity}, the exposure
+$E(\mu)$ is strictly increasing for all sufficiently small
+$\mu>0$. Since
+\[
+E(\mu)\to0
+\qquad\text{as}\qquad
+\mu\to0^+,
+\]
+continuity and strict monotonicity imply that, for every
+sufficiently small $c>0$, there exists a unique
+$\mu_{\mathrm{sc}}(c)>0$ satisfying
+\[
+E(\mu_{\mathrm{sc}}(c))=c.
+\]
+
+By Theorem~\ref{thm:exposure-expansion},
+\[
+E(\mu)
+=
+B_*\sqrt{\mu}
++
+O(\mu^{3/2})
+=
+\sqrt{\mu}\bigl(B_*+O(\mu)\bigr).
+\]
+Therefore, at $\mu=\mu_{\mathrm{sc}}(c)$,
+\[
+c^2
+=
+\mu_{\mathrm{sc}}(c)
+\bigl(B_*+O(\mu_{\mathrm{sc}}(c))\bigr)^2,
+\]
+and hence
+\[
+c^2
+=
+B_*^2\mu_{\mathrm{sc}}(c)
++
+O\bigl(\mu_{\mathrm{sc}}(c)^2\bigr).
+\]
+
+Since
+\[
+\frac{E(\mu)}{\sqrt{\mu}}
+\to B_*>0,
+\]
+there exists $\mu_0>0$ such that
+\[
+E(\mu)\geq\frac{B_*}{2}\sqrt{\mu}
+\]
+for all $0<\mu<\mu_0$.
+Evaluating this inequality at
+$\mu=\mu_{\mathrm{sc}}(c)$ gives
+\[
+\mu_{\mathrm{sc}}(c)=O(c^2).
+\]
+Substituting this estimate into the preceding relation yields
+\[
+c^2
+=
+B_*^2\mu_{\mathrm{sc}}(c)
++
+O(c^4).
+\]
+Consequently,
+\[
+\mu_{\mathrm{sc}}(c)
+=
+\frac{1}{B_*^2}c^2
++
+O(c^4).
+\]
+
+Since
+\[
+\eta_{\mathrm{sc}}(c)
+=
+\eta_f+\mu_{\mathrm{sc}}(c),
+\]
+we obtain
+\[
+\eta_{\mathrm{sc}}(c)-\eta_f
+=
+K_\diamond c^2+O(c^4),
+\]
+where
+\[
+K_\diamond=\frac{1}{B_*^2}.
+\]
+
+Using
+\[
+B_*=\lambda_*A_*\|v_*\|_\diamond
+\]
+gives
+\[
+K_\diamond
+=
+\frac{1}
+{\lambda_*^2A_*^2\|v_*\|_\diamond^2}.
+\]
+Since
+\[
+A_*^2=\frac{\lambda_*}{\ell_*},
+\]
+we further obtain
+\[
+K_\diamond
+=
+\frac{\ell_*}
+{\lambda_*^3\|v_*\|_\diamond^2}.
+\]
+Finally,
+\[
+\ell_*=\frac{\Gamma_*}{3\lambda_*},
+\]
+and therefore
+\[
+K_\diamond
+=
+\frac{\Gamma_*}
+{3\lambda_*^4\|v_*\|_\diamond^2}.
+\]
+By {\rm (H4)}, $\Gamma_*>0$, so
+\[
+K_\diamond>0.
+\]
+\end{proof}
+
+% ---------------------------------------------------------
+\subsection{Explicit tensor form of the separation coefficient}
+\label{subsec:explicit-K}
+% ---------------------------------------------------------
+
+The coefficient in
+Theorem~\ref{thm:quadratic-separation} can be written entirely in
+terms of the local differential geometry of the potential.
+
+\begin{corollary}[Explicit separation coefficient]
+\label{cor:explicit-K}
+Under the assumptions of
+Theorem~\ref{thm:quadratic-separation},
+\begin{equation}
+\boxed{
+K_\diamond
+=
+\frac{
+3T_*[v_*,v_*,H_*^{-1}g_*]
+-
+Q_*[v_*,v_*,v_*,v_*]
+}{
+3\lambda_*^4
+\|v_*\|_\diamond^2
+},
+}
+\label{eq:explicit-K-tensor}
+\end{equation}
+where
+\[
+g_*
+=
+T_*[v_*,v_*,\cdot]^\sharp.
+\]
+
+Equivalently, in an orthonormal Hessian eigenbasis
+$\{v_i\}_{i=1}^d$,
+\begin{align}
+K_\diamond
+&=
+\frac{1}{
+3\lambda_*^4
+\|v_*\|_\diamond^2
+}
+\Bigg[
+3
+\sum_{i=1}^d
+\frac{
+T_*[v_*,v_*,v_i]^2
+}{
+\lambda_i
+}
+\nonumber\\
+&\hspace{3em}
+-
+Q_*[v_*,v_*,v_*,v_*]
+\Bigg].
+\label{eq:explicit-K-eigenbasis}
+\end{align}
+\end{corollary}
+
+\begin{proof}
+Substitute the representations
+\eqref{eq:Gamma-star} and
+\eqref{eq:Gamma-eigenbasis}
+into \eqref{eq:K-Gamma}.
+\end{proof}
+
+\begin{remark}[Geometric interpretation]
+\label{rem:K-interpretation}
+The coefficient $K_\diamond$ combines three distinct pieces of
+local geometry.
+
+First,
+\[
+\lambda_*
+\]
+determines the linear flip threshold and the leading displacement of
+the gradient in the critical direction.
+
+Second,
+\[
+\Gamma_*
+\]
+determines the nonlinear saturation of the unstable critical mode
+and hence the amplitude of the emerging period-two orbit.
+
+Third,
+\[
+\|v_*\|_\diamond
+\]
+measures the critical eigendirection in the norm used by the
+clipping rule.
+
+Thus the switching-contact scale is determined jointly by the
+smooth bifurcation geometry and the geometry of the clipping norm.
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{Euclidean gradient clipping}
+\label{subsec:euclidean-separation}
+% ---------------------------------------------------------
+
+For standard gradient clipping,
+\[
+\|\cdot\|_\diamond=\|\cdot\|_2.
+\]
+Since
+\[
+\|v_*\|_2=1,
+\]
+the separation law simplifies substantially.
+
+\begin{corollary}[Euclidean clipping]
+\label{cor:euclidean-separation}
+For the standard Euclidean clipping rule,
+\begin{equation}
+\boxed{
+\eta_{\mathrm{sc}}(c)
+-
+\frac{2}{\lambda_*}
+=
+K_2c^2
++
+O(c^4),
+}
+\label{eq:euclidean-main-law}
+\end{equation}
+where
+\begin{equation}
+\boxed{
+K_2
+=
+\frac{\ell_*}{\lambda_*^3}
+=
+\frac{\Gamma_*}{3\lambda_*^4}.
+}
+\label{eq:K-euclidean}
+\end{equation}
+
+Equivalently,
+\begin{equation}
+\boxed{
+K_2
+=
+\frac{1}{3\lambda_*^4}
+\left[
+3
+\sum_{i=1}^d
+\frac{
+T_*[v_*,v_*,v_i]^2
+}{
+\lambda_i
+}
+-
+Q_*[v_*,v_*,v_*,v_*]
+\right].
+}
+\label{eq:K-euclidean-expanded}
+\end{equation}
+\end{corollary}
+
+% ---------------------------------------------------------
+\subsection{The same coefficient controls two phenomena}
+\label{subsec:coefficient-duality}
+% ---------------------------------------------------------
+
+The separation coefficient admits a direct interpretation in terms
+of the smooth flip coefficient.
+
+\begin{corollary}[Flip--switching coefficient relation]
+\label{cor:flip-switching-relation}
+The first flip coefficient $\ell_*$ and the leading
+switching-separation coefficient satisfy
+\begin{equation}
+\boxed{
+K_\diamond
+=
+\frac{\ell_*}{
+\lambda_*^3
+\|v_*\|_\diamond^2
+}.
+}
+\label{eq:flip-switching-coefficient}
+\end{equation}
+
+Therefore, within the present gradient structure, the same nonlinear
+coefficient that determines the birth and stability of the smooth
+period-two branch also determines its leading-order distance from
+the clipping boundary in parameter space.
+\end{corollary}
+
+\begin{remark}[Interpretation for Euclidean clipping]
+\label{rem:coefficient-duality-euclidean}
+For Euclidean clipping,
+\[
+K_2
+=
+\frac{\ell_*}{\lambda_*^3}.
+\]
+Hence a larger positive supercritical flip coefficient produces a
+smaller initial oscillation amplitude,
+\[
+A_*^2=\frac{\lambda_*}{\ell_*},
+\]
+and therefore delays the first clipping contact to a larger value of
+$\eta-\eta_f$.
+
+Conversely, a smaller positive $\ell_*$ produces a larger
+small-amplitude cycle for the same $\mu$ and causes clipping to be
+encountered sooner.
+\end{remark}
+
+% ---------------------------------------------------------
+\subsection{Dynamical regimes around the first contact}
+\label{subsec:regimes-around-contact}
+% ---------------------------------------------------------
+
+The first-contact parameter separates two distinct local regimes.
+
+\begin{proposition}[Pre-contact and contact regimes]
+\label{prop:precontact-contact-regimes}
+There exist $c_0>0$ and $\mu_0>0$ such that for every
+$0<c<c_0$ the following statements hold.
+
+\begin{enumerate}[label=\textnormal{(\roman*)}]
+
+\item
+If
+\[
+0<\mu<\mu_{\mathrm{sc}}(c),
+\]
+then
+\begin{equation}
+x_\pm(\mu)\in\Omega_c^-.
+\label{eq:precontact-smooth}
+\end{equation}
+Consequently,
+$\mathcal O_2(\mu)$ is simultaneously a stable period-two cycle of
+the smooth map $G_{\eta_f+\mu}$ and of the clipped map
+$F_{\eta_f+\mu,c}$.
+
+\item
+At
+\[
+\mu=\mu_{\mathrm{sc}}(c),
+\]
+both points satisfy
+\begin{equation}
+x_+(\mu_{\mathrm{sc}})
+\in\Sigma_c,
+\qquad
+x_-(\mu_{\mathrm{sc}})
+\in\Sigma_c.
+\label{eq:both-on-switching}
+\end{equation}
+The same two points still satisfy the period-two equations for
+$F_{\eta_{\mathrm{sc}},c}$.
+
+\item
+If
+\[
+\mu_{\mathrm{sc}}(c)<\mu<\mu_0,
+\]
+then the continuation of the \emph{smooth reference branch}
+satisfies
+\begin{equation}
+x_\pm(\mu)\in\Omega_c^+.
+\label{eq:postcontact-reference-clipped}
+\end{equation}
+In general, however, this smooth reference cycle is no longer a
+period-two cycle of the clipped map.
+
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{prop:exposure-monotonicity},
+the exposure $E(\mu)$ is strictly increasing for all
+sufficiently small $\mu>0$. We choose $\mu_0>0$ small enough
+that this monotonicity holds throughout $(0,\mu_0)$.
+
+If
+\[
+0<\mu<\mu_{\mathrm{sc}}(c),
+\]
+then
+\[
+E(\mu)<E(\mu_{\mathrm{sc}}(c))=c.
+\]
+By Theorem~\ref{thm:simultaneous-contact},
+both points therefore lie in the smooth region:
+\[
+x_\pm(\mu)\in\Omega_c^-.
+\]
+Since $F_{\eta,c}$ and $G_\eta$ coincide at both cycle points,
+the smooth period-two cycle is also a period-two cycle of the
+clipped map.
+
+At
+\[
+\mu=\mu_{\mathrm{sc}}(c),
+\]
+we have
+\[
+E(\mu_{\mathrm{sc}}(c))=c.
+\]
+Hence
+\[
+x_+(\mu_{\mathrm{sc}})\in\Sigma_c,
+\qquad
+x_-(\mu_{\mathrm{sc}})\in\Sigma_c.
+\]
+Moreover, the clipping operator satisfies
+\[
+C_c^\diamond(g)=g
+\qquad
+\text{whenever }
+\|g\|_\diamond=c.
+\]
+Thus the clipped and smooth maps still agree at both cycle
+points, and the period-two relations remain valid at the
+contact parameter.
+
+Finally, if
+\[
+\mu_{\mathrm{sc}}(c)<\mu<\mu_0,
+\]
+strict monotonicity gives
+\[
+E(\mu)>c.
+\]
+Therefore
+\[
+x_\pm(\mu)\in\Omega_c^+.
+\]
+These points still form the continuation of the smooth reference
+cycle, but in general they no longer form a period-two cycle of
+the clipped map, because in $\Omega_c^+$ the gradient update is
+rescaled by the factor
+\[
+\frac{c}{\|\nabla V(x)\|_\diamond}<1.
+\]
+\end{proof}
+
+\begin{remark}[Stability at the contact point]
+\label{rem:contact-stability-not-claimed}
+At the exact switching-contact parameter, the two-cycle continues
+to exist as an orbit of the clipped map because the map itself is
+continuous across $\Sigma_c$.
+
+We do not, however, infer its stability directly from the smooth
+multiplier formula. The derivative of the clipped map has different
+one-sided limits at the switching surface, so stability at and
+beyond contact is a genuinely piecewise-smooth problem.
+
+This issue is deferred to the post-contact analysis.
+\end{remark}
+\subsection{Origin of the improved remainder}
+\label{subsec:origin-improved-remainder}
+
+The $O(c^4)$ remainder in
+Theorem~\ref{thm:quadratic-separation}
+is a structural consequence of the exact gradient-balance
+identity.
+
+Indeed, Theorem~\ref{thm:exposure-expansion} gives
+\[
+E(\mu)
+=
+B_*\sqrt{\mu}
++
+O(\mu^{3/2}),
+\]
+rather than the more general expansion
+\[
+E(\mu)
+=
+B_1\sqrt{\mu}
++
+B_2\mu
++
+O(\mu^{3/2}).
+\]
+The absence of the $O(\mu)$ term is a consequence of the
+oddness of the half-difference in the signed square-root
+parameter and of the exact identity
+\[
+E(\mu)
+=
+\frac{2}{\eta_f+\mu}
+\|d(\sqrt{\mu})\|_\diamond .
+\]
+
+Squaring the actual exposure expansion gives
+\[
+E(\mu)^2
+=
+B_*^2\mu
++
+O(\mu^2).
+\]
+At first contact,
+\[
+E(\mu_{\mathrm{sc}}(c))=c,
+\]
+and therefore
+\[
+c^2
+=
+B_*^2\mu_{\mathrm{sc}}(c)
++
+O\bigl(\mu_{\mathrm{sc}}(c)^2\bigr).
+\]
+Since
+\[
+\mu_{\mathrm{sc}}(c)=O(c^2),
+\]
+it follows that
+\[
+\mu_{\mathrm{sc}}(c)
+=
+\frac{1}{B_*^2}c^2
++
+O(c^4).
+\]
+
+Thus the improvement from the naively expected $O(c^3)$
+remainder to $O(c^4)$ does not require a higher-order normal-form
+coefficient. It follows directly from the exact two-cycle
+gradient balance and the resulting parity structure of the
+exposure.
+
+A further expansion of the form
+\[
+\eta_{\mathrm{sc}}(c)
+=
+\eta_f
++
+K_\diamond c^2
++
+K_{\diamond,4}c^4
++
+o(c^4)
+\]
+would require additional higher-order information on the
+period-two branch. Such coefficients are not needed for the
+leading separation law considered here.
