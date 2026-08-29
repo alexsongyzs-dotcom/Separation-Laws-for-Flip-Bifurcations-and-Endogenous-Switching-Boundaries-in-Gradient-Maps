@@ -10,7 +10,7 @@ and a **fully machine‑verified Lean 4 formalization** of all key theorems (68 
 
 ```
 .
-├── paper/                      # LaTeX source (main.tex, chapters, references.bib, main.pdf)
+├── paper/                      # LaTeX source — Nonlinearity submission version (article class 10pt, local iopart-num.bst, main.pdf)
 └── lean-proofs/                # Lean 4 formalization (Lean 4.33.1 + mathlib4 v4.33.1)
     ├── Lean4Proofs/            # 8 Lean proof files
     ├── lakefile.lean
